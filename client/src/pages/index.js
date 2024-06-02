@@ -1,13 +1,13 @@
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import Hero19 from "@/components/sections/Hero19"
+import Layout from "../components/layout/Layout"
 
 export default function Home() {
-  return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <h1 className="text-4xl font-bold text-center"> Welcome to AUST Club Management System </h1>
-    </main>
-  );
+
+    return (
+        <>
+            <Layout headerStyle={1} footerStyle={3} headerCls="navbar-dark light-hero-header">
+                <Hero19 />
+            </Layout>
+        </>
+    )
 }
