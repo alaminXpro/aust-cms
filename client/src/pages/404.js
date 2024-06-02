@@ -24,7 +24,7 @@ export default function Home() {
                                             Oops! The page you are looking for might have been moved, renamed or might never existed
                                         </h6>
                                         {/* Button */}
-                                        <Link href="/demo-1" className="btn btn--theme hover--theme">Back to home</Link>
+                                        <Link href="/" className="btn btn--theme hover--theme">Back to home</Link>
                                     </div>
                                 </div>	{/* END 404 PAGE TEXT */}
                             </div>	   {/* End row */}
