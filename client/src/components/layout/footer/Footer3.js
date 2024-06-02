@@ -47,7 +47,7 @@ export default function Footer3() {
                                         <p><Link href="/features">Integration</Link></p>
                                     </li>
                                     <li>
-                                        <p><Link href="/download">What's New</Link></p>
+                                        <p><Link href="/download">What&apos;s New</Link></p>
                                     </li>
                                     <li>
                                         <p><Link href="/pricing-1">Pricing</Link></p>
