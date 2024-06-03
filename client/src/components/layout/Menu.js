@@ -63,7 +63,7 @@ export default function Menu() {
                     </div> {/* End wsmegamenu */}
                 </li> {/* END MEGAMENU */}
                 {/* SIMPLE NAVIGATION LINK */}
-                <li className="nl-simple" aria-haspopup="true"><Link href="/pricing-1" className="h-link">Pricing</Link></li>
+                <li className="nl-simple" aria-haspopup="true"><Link href="/pricing-1" className="h-link">Payments</Link></li>
                 {/* SIMPLE NAVIGATION LINK */}
                 <li className="nl-simple" aria-haspopup="true"><Link href="#faqs-3" className="h-link">FAQs</Link>
                 </li>
