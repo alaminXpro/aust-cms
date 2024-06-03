@@ -14,7 +14,7 @@ export default function Hero19() {
                                 {/* Title */}
                                 <h2 className="s-56 w-700">Welcome to AUST CMS</h2>
                                 {/* Text */}
-                                <p className="p-xl">"The journey of a thousand miles begins with one step." – Lao Tzu
+                                <p className="p-xl">&quot;The journey of a thousand miles begins with one step.&quot; – Lao Tzu
                                 </p>
                                 {/* Buttons */}
                                 <div className="btns-group">
