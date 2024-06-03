@@ -7,6 +7,7 @@ export default function Home() {
         <>
             <Layout headerStyle={1} footerStyle={3} headerCls="navbar-dark light-hero-header">
                 <Hero19 />
+                
             </Layout>
         </>
     )
