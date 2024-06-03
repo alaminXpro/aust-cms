@@ -54,8 +54,8 @@ export default function Menu() {
                                 <ul className="col-md-12 col-lg-3 link-list">
                                     <li className="fst-li"><Link href="/blog-listing">Blog Listing</Link></li>
                                     <li><Link href="/single-post">Single Blog Post</Link></li>
-                                    <li><Link href="/login-2">Login Page</Link></li>
-                                    <li><Link href="/signup-2">Signup Page</Link></li>
+                                    <li><Link href="/login">Login Page</Link></li>
+                                    <li><Link href="/signup">Signup Page</Link></li>
                                     <li><Link href="/reset-password">Reset Password</Link></li>
                                 </ul>
                             </div> {/* End row */}
@@ -69,11 +69,11 @@ export default function Menu() {
                 </li>
                 {/* SIGN IN LINK */}
                 <li className="nl-simple reg-fst-link mobile-last-link" aria-haspopup="true">
-                    <Link href="/login-2" className="h-link">Sign in</Link>
+                    <Link href="/login" className="h-link">Sign in</Link>
                 </li>
                 {/* SIGN UP BUTTON */}
                 <li className="nl-simple" aria-haspopup="true">
-                    <Link href="/signup-2" className="btn r-04 btn--theme hover--tra-white last-link">Sign
+                    <Link href="/signup" className="btn r-04 btn--theme hover--tra-white last-link">Sign
                         up</Link>
                 </li>
             </ul>

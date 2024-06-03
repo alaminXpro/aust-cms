@@ -12,14 +12,13 @@ export default function Hero19() {
                         <div className="col-md-10 col-lg-9">
                             <div className="hero-19-txt">
                                 {/* Title */}
-                                <h2 className="s-56 w-700">Place your business at the top of search engines</h2>
+                                <h2 className="s-56 w-700">Welcome to AUST CMS</h2>
                                 {/* Text */}
-                                <p className="p-xl">Mauris donec ociis diam magnis sapien sagittis sapien tempor volute gravida
-                                    and aliquet tortor undo aliquet quaerat
+                                <p className="p-xl">&quot;The journey of a thousand miles begins with one step.&quot; – Lao Tzu
                                 </p>
                                 {/* Buttons */}
                                 <div className="btns-group">
-                                    <Link href="#banner-7" className="btn r-04 btn--theme hover--theme">Get started for free</Link>
+                                    <Link href="#banner-7" className="btn r-04 btn--theme hover--theme">Get stated for free</Link>
                                     <Link href="" className="video-popup1 btn r-04 btn--tra-black hover--theme ico-20 ico-right">See how it works <span className="flaticon-play" />
                                     </Link>
                                 </div>

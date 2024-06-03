@@ -108,7 +108,7 @@ export default function Footer3() {
                             {/* FOOTER COPYRIGHT */}
                             <div className="col">
                                 <div className="footer-copyright">
-                                    <p className="p-sm">© 2024 AlaminXpro. <span>All Rights Reserved</span></p>
+                                    <p className="p-sm">© 2024 AUSTCMS. <span>All Rights Reserved</span></p>
                                 </div>
                             </div>
                             {/* FOOTER SOCIALS */}

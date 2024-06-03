@@ -9,7 +9,7 @@ export default function Footer2() {
                         <div className="row row-cols-1 row-cols-md-2 d-flex align-items-center">
                             {/* FOOTER COPYRIGHT */}
                             <div className="col">
-                                <div className="footer-copyright"><p className="p-sm">© 2024 AlaminXpro, Inc.</p></div>
+                                <div className="footer-copyright"><p className="p-sm">© 2024 AUSTCMS, Inc.</p></div>
                             </div>
                             {/* FOOTER LINKS */}
                             <div className="col">
