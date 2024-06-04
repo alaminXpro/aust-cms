@@ -37,7 +37,7 @@ export default function Hero19() {
                     <div className="row">
                         <div className="col">
                             <div className="hero-19-img wow fadeInUp">
-                                <img className="img-fluid" src="/images/dashboard-09.png" alt="hero-image" />
+                            <img className="img-fluid" src="/images/dashboard-09.png" alt="hero-image" style={{ border: '3px solid #666', boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)' }} />
                             </div>
                         </div>
                     </div>	{/* END HERO IMAGE */}
