@@ -12,7 +12,7 @@ export default function Hs2() {
                                 {/* Title */}
                                 <h2 className="s-50 w-700">Discover your potential and make your mark</h2>
                                 {/* Text */}
-                                <p className="s-21 color--grey">Joining a club is not just about adding a line to your resume; it's about discovering passions, building lifelong friendships, and creating memories that will shape your future. Step out of your comfort zone and dive into the endless possibilities that await you!</p>
+                                <p className="s-21 color--grey">Joining a club is not just about adding a line to your resume; it&apos;s about discovering passions, building lifelong friendships, and creating memories that will shape your future. Step out of your comfort zone and dive into the endless possibilities that await you!</p>
                             </div>
                         </div>
                     </div>
