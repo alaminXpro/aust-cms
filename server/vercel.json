@@ -1,19 +1,20 @@
 {
-    "version": 2,
-    "name": "server",
-    "builds": [
-      {
-        "src": "server.js",
-        "use": "@vercel/node"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "server.js"
-      }
-    ],
-    "env": {
-      "MONGO": "@mongo"
+  "version": 2,
+  "name": "server",
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
     }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "server.js"
+    }
+  ],
+  "env": {
+    "MONGO": "mongodb+srv://alaminxpro:Yn7nBjdDN9hmvntP@alamin.oqu9rla.mongodb.net/AUSTCMS?retryWrites=true&w=majority&appName=AUSTCMS",
+    "JWT_SECRET": "9a1a80758d000cba1b3da6d5f7097028d562ce5e6be5527fb4f2174b5bba2840"
   }
+}
