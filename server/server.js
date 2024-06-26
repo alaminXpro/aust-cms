@@ -29,10 +29,10 @@ mongoose.connect(process.env.MONGO)
   });
 
 // Serve static files
-app.use(express.static(path.join(__dirname, '/client/dist')));
+//app.use(express.static(path.join(__dirname, '/client/dist')));
 
 // Routes
-app.get('/test', (req, res) => {
+app.get('/', (req, res) => {
   res.send('API is running');
 });
 
@@ -40,9 +40,9 @@ app.get('/test', (req, res) => {
 app.use(log);
 
 // Default route
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'def', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'client', 'def', 'index.html'));
+// });
 
 // Error handling middleware
 app.use((err, req, res, next) => {
