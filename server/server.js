@@ -30,21 +30,23 @@ mongoose.connect(process.env.MONGO)
     console.log("Connection failed with error: " + err);
   });
 
-// Serve static files
-app.use(express.static(path.join(__dirname, '/client/dist')));
-
-// Default route
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'def', 'index.html'));
-});
-
 // Routes
+//app.use('/api/user', userRouter);
+//app.use('/api/auth', authRouter);
 app.get('/test', (req, res) => {
-  res.send('Welcome to aust Server');
+  res.status(200).send("Hello World from AUST SERVER");
 });
 
 // API logger
 app.use(log);
+
+// Serve static files
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+// Default route
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '', 'client', 'def', 'index.html'));
+});
 
 //Error handling middleware
 app.use((err, req, res, next) => {
