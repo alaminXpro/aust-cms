@@ -16,13 +16,15 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
 
+// Start server
+app.listen(process.env.PORT, () => {
+  console.log("Server is running on http://localhost:" + process.env.PORT);
+});
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO)
   .then(() => {
     console.log("Connected to database");
-    app.listen(process.env.PORT, () => {
-      console.log("Server is running on http://localhost:" + process.env.PORT);
-    });
   })
   .catch((err) => {
     console.log("Connection failed with error: " + err);
@@ -37,7 +39,7 @@ app.get('/', (req, res) => {
 });
 
 // API logger
-app.use(log);
+//app.use(log);
 
 // Default route
 // app.get('*', (req, res) => {
