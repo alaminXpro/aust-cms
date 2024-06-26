@@ -44,8 +44,11 @@ app.use(log);
 app.use(express.static(path.join(__dirname, '/client/dist')));
 
 // Default route
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '', 'client', 'def', 'index.html'));
+const basePath = process.env.BASE_PATH || __dirname;
+
+// Default route
+app.get('/', (req, res) => {
+  res.sendFile(path.join(basePath, 'client', 'def', 'index.html'));
 });
 
 //Error handling middleware
