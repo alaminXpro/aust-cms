@@ -16,35 +16,37 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
 
+// Start server
+app.listen(process.env.PORT, () => {
+  console.log("Server is running on http://localhost:" + process.env.PORT);
+});
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO)
   .then(() => {
     console.log("Connected to database");
-    app.listen(process.env.PORT, () => {
-      console.log("Server is running on http://localhost:" + process.env.PORT);
-    });
   })
   .catch((err) => {
     console.log("Connection failed with error: " + err);
   });
 
 // Serve static files
-//app.use(express.static(path.join(__dirname, '/client/dist')));
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+// Default route
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'def', 'index.html'));
+});
 
 // Routes
-app.get('/', (req, res) => {
-  res.send('API is running');
+app.get('/test', (req, res) => {
+  res.send('Welcome to aust Server');
 });
 
 // API logger
 app.use(log);
 
-// Default route
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'client', 'def', 'index.html'));
-// });
-
-// Error handling middleware
+//Error handling middleware
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   const message = err.message || 'Internal Server Error';
