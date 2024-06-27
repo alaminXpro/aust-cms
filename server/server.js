@@ -43,18 +43,18 @@ app.use('/api/auth', authRouter);
 // API logger
 app.use(log);
 
-// Serve static files
-app.use(express.static(path.join(__dirname, '/client/dist')));
+// Determine the correct base path in Vercel environment
+const basePath = process.env.LAMBDA_TASK_ROOT ? path.join(process.env.LAMBDA_TASK_ROOT, 'client', 'def') : path.join(__dirname, 'client', 'def');
 
-// basePath
-const basePath = __dirname;
+// Serve static files
+app.use(express.static(path.join(basePath)));
 
 // Default route
 app.get('*', (req, res) => {
-  res.sendFile(path.join(basePath, 'client', 'def', 'index.html'));
+  res.sendFile(path.join(basePath, 'index.html'));
 });
 
-//Error handling middleware
+// Error handling middleware
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   const message = err.message || 'Internal Server Error';
