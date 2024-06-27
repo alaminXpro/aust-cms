@@ -5,7 +5,8 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 import cors from 'cors';
 import log from "./middlewares/logger.js";
-
+import userRouter from './routes/user.route.js';
+import authRouter from './routes/auth.route.js';
 dotenv.config();
 
 const app = express();
@@ -31,11 +32,13 @@ mongoose.connect(process.env.MONGO)
   });
 
 // Routes
-//app.use('/api/user', userRouter);
-//app.use('/api/auth', authRouter);
 app.get('/test', (req, res) => {
-  res.status(200).send("Hello World from AUST SERVER");
+  res.status(200).json({
+    message: 'Hello World!',
+  });
 });
+app.use('/api/user', userRouter);
+app.use('/api/auth', authRouter);
 
 // API logger
 app.use(log);
@@ -43,11 +46,11 @@ app.use(log);
 // Serve static files
 app.use(express.static(path.join(__dirname, '/client/dist')));
 
-// Default route
-const basePath = process.env.BASE_PATH || __dirname;
+// basePath
+const basePath = __dirname;
 
 // Default route
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(basePath, 'client', 'def', 'index.html'));
 });
 
