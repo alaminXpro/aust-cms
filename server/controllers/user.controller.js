@@ -49,6 +49,15 @@ export const deleteUser = async (req, res, next) => {
   }
 };
 
+export const deleteAllUser = async (req, res, next) => {
+  try {
+    await User.deleteMany();
+    res.status(200).json('All users have been deleted!');
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const getUser = async (req, res, next) => {
   try {
     
@@ -81,7 +90,11 @@ export const getAllUsers = async (req, res, next) => {
     const users = query
       ? await User.find().sort({ _id: -1 }).limit(5)
       : await User.find();
-    res.status(200).json(users);
+    const sanitizedUsers = users.map(user => {
+      const { password, ...rest } = user._doc;
+      return rest;
+    });
+    res.status(200).json(sanitizedUsers);
   } catch (error) {
     next(error);
   }
