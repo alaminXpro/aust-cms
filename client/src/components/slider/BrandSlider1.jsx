@@ -1,5 +1,5 @@
 
-import Link from "next/link"
+import { Link } from 'react-router-dom';
 import { Autoplay } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 
@@ -55,43 +55,43 @@ export default function BrandSlider1() {
             <Swiper {...swiperOptions} className="brands-carousel-5">
                 {/* BRAND LOGO IMAGE */}
                 <SwiperSlide className="brand-logo">
-                    <Link href="#"><img className="img-fluid light-theme-img" src="/images/brand-1.png" alt="brand-logo" /></Link>
-                    <Link href="#"><img className="img-fluid dark-theme-img" src="/images/brand-1-white.png" alt="brand-logo" /></Link>
+                    <Link to="#"><img className="img-fluid light-theme-img" src="/images/brand-1.png" alt="brand-logo" /></Link>
+                    <Link to="#"><img className="img-fluid dark-theme-img" src="/images/brand-1-white.png" alt="brand-logo" /></Link>
                 </SwiperSlide>
                 {/* BRAND LOGO IMAGE */}
                 <SwiperSlide className="brand-logo">
-                    <Link href="#"><img className="img-fluid light-theme-img" src="/images/brand-2.png" alt="brand-logo" /></Link>
-                    <Link href="#"><img className="img-fluid dark-theme-img" src="/images/brand-3-white.png" alt="brand-logo" /></Link>
+                    <Link to="#"><img className="img-fluid light-theme-img" src="/images/brand-2.png" alt="brand-logo" /></Link>
+                    <Link to="#"><img className="img-fluid dark-theme-img" src="/images/brand-3-white.png" alt="brand-logo" /></Link>
                 </SwiperSlide>
                 {/* BRAND LOGO IMAGE */}
                 <SwiperSlide className="brand-logo">
-                    <Link href="#"><img className="img-fluid light-theme-img" src="/images/brand-4.png" alt="brand-logo" /></Link>
-                    <Link href="#"><img className="img-fluid dark-theme-img" src="/images/brand-4-white.png" alt="brand-logo" /></Link>
+                    <Link to="#"><img className="img-fluid light-theme-img" src="/images/brand-4.png" alt="brand-logo" /></Link>
+                    <Link to="#"><img className="img-fluid dark-theme-img" src="/images/brand-4-white.png" alt="brand-logo" /></Link>
                 </SwiperSlide>
                 {/* BRAND LOGO IMAGE */}
                 <SwiperSlide className="brand-logo">
-                    <Link href="#"><img className="img-fluid light-theme-img" src="/images/brand-5.png" alt="brand-logo" /></Link>
-                    <Link href="#"><img className="img-fluid dark-theme-img" src="/images/brand-5-white.png" alt="brand-logo" /></Link>
+                    <Link to="#"><img className="img-fluid light-theme-img" src="/images/brand-5.png" alt="brand-logo" /></Link>
+                    <Link to="#"><img className="img-fluid dark-theme-img" src="/images/brand-5-white.png" alt="brand-logo" /></Link>
                 </SwiperSlide>
                 {/* BRAND LOGO IMAGE */}
                 <SwiperSlide className="brand-logo">
-                    <Link href="#"><img className="img-fluid light-theme-img" src="/images/brand-6.png" alt="brand-logo" /></Link>
-                    <Link href="#"><img className="img-fluid dark-theme-img" src="/images/brand-6-white.png" alt="brand-logo" /></Link>
+                    <Link to="#"><img className="img-fluid light-theme-img" src="/images/brand-6.png" alt="brand-logo" /></Link>
+                    <Link to="#"><img className="img-fluid dark-theme-img" src="/images/brand-6-white.png" alt="brand-logo" /></Link>
                 </SwiperSlide>
                 {/* BRAND LOGO IMAGE */}
                 <SwiperSlide className="brand-logo">
-                    <Link href="#"><img className="img-fluid light-theme-img" src="/images/brand-7.png" alt="brand-logo" /></Link>
-                    <Link href="#"><img className="img-fluid dark-theme-img" src="/images/brand-7-white.png" alt="brand-logo" /></Link>
+                    <Link to="#"><img className="img-fluid light-theme-img" src="/images/brand-7.png" alt="brand-logo" /></Link>
+                    <Link to="#"><img className="img-fluid dark-theme-img" src="/images/brand-7-white.png" alt="brand-logo" /></Link>
                 </SwiperSlide>
                 {/* BRAND LOGO IMAGE */}
                 <SwiperSlide className="brand-logo">
-                    <Link href="#"><img className="img-fluid light-theme-img" src="/images/brand-8.png" alt="brand-logo" /></Link>
-                    <Link href="#"><img className="img-fluid dark-theme-img" src="/images/brand-8-white.png" alt="brand-logo" /></Link>
+                    <Link to="#"><img className="img-fluid light-theme-img" src="/images/brand-8.png" alt="brand-logo" /></Link>
+                    <Link to="#"><img className="img-fluid dark-theme-img" src="/images/brand-8-white.png" alt="brand-logo" /></Link>
                 </SwiperSlide>
                 {/* BRAND LOGO IMAGE */}
                 <SwiperSlide className="brand-logo">
-                    <Link href="#"><img className="img-fluid light-theme-img" src="/images/brand-9.png" alt="brand-logo" /></Link>
-                    <Link href="#"><img className="img-fluid dark-theme-img" src="/images/brand-9-white.png" alt="brand-logo" /></Link>
+                    <Link to="#"><img className="img-fluid light-theme-img" src="/images/brand-9.png" alt="brand-logo" /></Link>
+                    <Link to="#"><img className="img-fluid dark-theme-img" src="/images/brand-9-white.png" alt="brand-logo" /></Link>
                 </SwiperSlide>
             </Swiper>
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-import Link from "next/link"
+import { Link } from 'react-router-dom';
 export default function BackToTop() {
     const [hasScrolled, setHasScrolled] = useState("false")
 

@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { Link } from 'react-router-dom';
 export default function Home() {
 
     return (
@@ -36,7 +36,7 @@ export default function Home() {
                                                 <form name="signinform" className="row sign-in-form">
                                                     {/* Google Button */}
                                                     <div className="col-md-12">
-                                                        <Link href="#" className="btn btn-google ico-left">
+                                                        <Link to="#" className="btn btn-google ico-left">
                                                             <img src="/images/png_icons/google.png" alt="google-icon" /> Sign in with Google
                                                         </Link>
                                                     </div>
@@ -60,7 +60,7 @@ export default function Home() {
                                                     {/* Reset Password Link */}
                                                     <div className="col-md-12">
                                                         <div className="reset-password-link">
-                                                            <p className="p-sm"><Link href="/reset-password" className="color--theme">Forgot your password?</Link></p>
+                                                            <p className="p-sm"><Link to="/reset-password" className="color--theme">Forgot your password?</Link></p>
                                                         </div>
                                                     </div>
                                                     {/* Form Submit Button */}
@@ -70,7 +70,7 @@ export default function Home() {
                                                     {/* Sign Up Link */}
                                                     <div className="col-md-12">
                                                         <p className="create-account text-center">
-                                                            Don&apost;t have an account? <Link href="/signup" className="color--theme">Sign up</Link>
+                                                            Don&apost;t have an account? <Link to="/signup" className="color--theme">Sign up</Link>
                                                         </p>
                                                     </div>
                                                 </form>

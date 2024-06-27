@@ -1,5 +1,5 @@
 
-import Link from "next/link"
+import { Link } from 'react-router-dom';
 export default function Footer3() {
     return (
         <>
@@ -22,16 +22,16 @@ export default function Footer3() {
                                 {/* Links */}
                                 <ul className="foo-links clearfix">
                                     <li>
-                                        <p><Link href="/about">About Us</Link></p>
+                                        <p><Link to="/about">About Us</Link></p>
                                     </li>
                                     <li>
-                                        <p><Link href="/blog-listing">Our Blog</Link></p>
+                                        <p><Link to="/blog-listing">Our Blog</Link></p>
                                     </li>
                                     <li>
-                                        <p><Link href="/testimonials">Customers</Link></p>
+                                        <p><Link to="/testimonials">Customers</Link></p>
                                     </li>
                                     <li>
-                                        <p><Link href="#">Community</Link></p>
+                                        <p><Link to="#">Community</Link></p>
                                     </li>
                                 </ul>
                             </div>
@@ -44,16 +44,16 @@ export default function Footer3() {
                                 {/* Links */}
                                 <ul className="foo-links clearfix">
                                     <li>
-                                        <p><Link href="/features">Integration</Link></p>
+                                        <p><Link to="/features">Integration</Link></p>
                                     </li>
                                     <li>
-                                        <p><Link href="/download">What&apos;s New</Link></p>
+                                        <p><Link to="/download">What&apos;s New</Link></p>
                                     </li>
                                     <li>
-                                        <p><Link href="/pricing-1">Pricing</Link></p>
+                                        <p><Link to="/pricing-1">Pricing</Link></p>
                                     </li>
                                     <li>
-                                        <p><Link href="/help-center">Help Center</Link></p>
+                                        <p><Link to="/help-center">Help Center</Link></p>
                                     </li>
                                 </ul>
                             </div>
@@ -66,16 +66,16 @@ export default function Footer3() {
                                 {/* Links */}
                                 <ul className="foo-links clearfix">
                                     <li>
-                                        <p><Link href="/terms">Terms of Use</Link></p>
+                                        <p><Link to="/terms">Terms of Use</Link></p>
                                     </li>
                                     <li>
-                                        <p><Link href="/privacy">Privacy Policy</Link></p>
+                                        <p><Link to="/privacy">Privacy Policy</Link></p>
                                     </li>
                                     <li>
-                                        <p><Link href="/cookies">Cookie Policy</Link></p>
+                                        <p><Link to="/cookies">Cookie Policy</Link></p>
                                     </li>
                                     <li>
-                                        <p><Link href="#">Site Map</Link></p>
+                                        <p><Link to="#">Site Map</Link></p>
                                     </li>
                                 </ul>
                             </div>
@@ -114,10 +114,10 @@ export default function Footer3() {
                             {/* FOOTER SOCIALS */}
                             <div className="col">
                                 <ul className="bottom-footer-socials ico-20 text-end">
-                                    <li><Link href="#"><span className="flaticon-facebook" /></Link></li>
-                                    <li><Link href="#"><span className="flaticon-twitter" /></Link></li>
-                                    <li><Link href="#"><span className="flaticon-instagram" /></Link></li>
-                                    <li><Link href="#"><span className="flaticon-youtube" /></Link></li>
+                                    <li><Link to="#"><span className="flaticon-facebook" /></Link></li>
+                                    <li><Link to="#"><span className="flaticon-twitter" /></Link></li>
+                                    <li><Link to="#"><span className="flaticon-instagram" /></Link></li>
+                                    <li><Link to="#"><span className="flaticon-youtube" /></Link></li>
                                 </ul>
                             </div>
                         </div> {/* End row */}

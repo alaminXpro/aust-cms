@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { Link } from 'react-router-dom';
 export default function Home() {
 
     return (
@@ -20,7 +20,7 @@ export default function Home() {
                                                 <form name="signupform" className="row sign-up-form">
                                                     {/* Google Button */}
                                                     <div className="col-md-12">
-                                                        <Link href="#" className="btn btn-google ico-left">
+                                                        <Link to="#" className="btn btn-google ico-left">
                                                             <img src="/images/png_icons/google.png" alt="google-icon" /> Sign up with Google
                                                         </Link>
                                                     </div>
@@ -50,8 +50,8 @@ export default function Home() {
                                                     <div className="col-md-12">
                                                         <div className="form-data">
                                                             <span>By clicking “Create Account”, you agree to our
-                                                                <Link href="/terms">Terms</Link> and that you have read our
-                                                                <Link href="/privacy"> Privacy Policy</Link>
+                                                                <Link to="/terms">Terms</Link> and that you have read our
+                                                                <Link to="/privacy"> Privacy Policy</Link>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -62,7 +62,7 @@ export default function Home() {
                                                     {/* Log In Link */}
                                                     <div className="col-md-12">
                                                         <p className="create-account text-center">
-                                                            Already have an account? <Link href="/login" className="color--theme">Log in</Link>
+                                                            Already have an account? <Link to="/login" className="color--theme">Log in</Link>
                                                         </p>
                                                     </div>
                                                 </form>

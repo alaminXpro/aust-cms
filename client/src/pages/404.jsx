@@ -1,6 +1,6 @@
 import Layout from "../components/layout/Layout"
-import Link from "next/link"
-export default function Home() {
+import { Link } from 'react-router-dom';
+export default function NotFoundPage() {
 
     return (
         <>
@@ -24,7 +24,7 @@ export default function Home() {
                                             Oops! The page you are looking for might have been moved, renamed or might never existed
                                         </h6>
                                         {/* Button */}
-                                        <Link href="/" className="btn btn--theme hover--theme">Back to home</Link>
+                                        <Link to="/" className="btn btn--theme hover--theme">Back to home</Link>
                                     </div>
                                 </div>	{/* END 404 PAGE TEXT */}
                             </div>	   {/* End row */}
