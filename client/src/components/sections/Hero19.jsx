@@ -1,6 +1,6 @@
 
 
-import Link from "next/link"
+import { Link } from 'react-router-dom';
 import BrandSlider2 from "../slider/BrandSlider2"
 export default function Hero19() {
     return (
@@ -18,8 +18,8 @@ export default function Hero19() {
                                 </p>
                                 {/* Buttons */}
                                 <div className="btns-group">
-                                    <Link href="#banner-7" className="btn r-04 btn--theme hover--theme">Explore!</Link>
-                                    <Link href="" className="video-popup1 btn r-04 btn--tra-black hover--theme ico-20 ico-right">See how it works <span className="flaticon-play" />
+                                    <Link to="#banner-7" className="btn r-04 btn--theme hover--theme">Explore!</Link>
+                                    <Link to="" className="video-popup1 btn r-04 btn--tra-black hover--theme ico-20 ico-right">See how it works <span className="flaticon-play" />
                                     </Link>
                                 </div>
                             </div>
@@ -34,10 +34,10 @@ export default function Hero19() {
                         </div>  {/* End row */}
                     </div>	{/* END BRANDS CAROUSEL */}
                     {/* HERO IMAGE */}
-                    <div className="row">
+                    <div className="row justify-content-center">
                         <div className="col">
                             <div className="hero-19-img wow fadeInUp">
-                            <img className="img-fluid" src="/images/dashboard-09.png" alt="hero-image" style={{ border: '3px solid #666', boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)' }} />
+                                <img className="img-fluid" src="/images/dashboard-09.png" alt="hero-image" style={{ border: '3px solid #666', boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)', display: 'block', margin: '0 auto' }} />
                             </div>
                         </div>
                     </div>	{/* END HERO IMAGE */}

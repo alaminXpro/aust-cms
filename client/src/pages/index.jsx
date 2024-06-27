@@ -1,7 +1,7 @@
-import Hero19 from "@/components/sections/Hero19"
+import Hero19 from "../components/sections/Hero19"
 import Layout from "../components/layout/Layout"
-import Hs1 from "@/components/sections/hs1"
-import Hs2 from "@/components/sections/hs2"
+import Hs1 from "../components/sections/hs1"
+import Hs2 from "../components/sections/hs2"
 
 export default function Home() {
 

@@ -21,8 +21,7 @@ export default function Hs1() {
                                 {/* Title */}
                                 <h2 className="s-46 w-700">Unlock Success with the Right Strategies</h2>
                                 {/* Text */}
-                                <p>Empower your future with effective strategies and meaningful connections. Joining a club is the key to
-                                    gaining valuable experiences, expanding your network, and enhancing your skills for a brighter career.
+                                <p>Empower your future with effective strategies and meaningful connections. 
                                 </p>
                                 {/* Small Title */}
                                 <h5 className="s-24 w-700">Achieve More in Less Time</h5>
@@ -41,8 +40,7 @@ export default function Hs1() {
                                         <div className="cbox-1-ico"><span className="flaticon-check" /></div>
                                     </div>
                                     <div className="cbox-1-txt">
-                                        <p>Clubs offer a supportive environment where you can develop leadership and teamwork skills,
-                                            preparing you for future challenges.
+                                        <p>Clubs offer a supportive environment.
                                         </p>
                                     </div>
                                 </div>
@@ -52,7 +50,7 @@ export default function Hs1() {
                                         <div className="cbox-1-ico"><span className="flaticon-check" /></div>
                                     </div>
                                     <div className="cbox-1-txt">
-                                        <p className="mb-0">Build lasting connections and friendships that will benefit your career journey.</p>
+                                        <p className="mb-0">Build lasting connections and friendships.</p>
                                     </div>
                                 </div>
                             </div>

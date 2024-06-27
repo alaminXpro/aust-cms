@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { Link } from 'react-router-dom';
 import Menu from "../Menu"
 import MobileMenu from "../MobileMenu"
 export default function Header1({ scroll, isMobileMenu, handleMobileMenu, headerCls }) {
@@ -16,14 +16,14 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, header
                         <div className="wsmainwp clearfix">
                             {/* HEADER BLACK LOGO */}
                             <div className="desktoplogo">
-                                <Link href="/" className="logo-black">
+                                <Link to="/" className="logo-black">
                                     <img className="light-theme-img" src="/images/logo-pink.png" alt="logo" />
                                     <img className="dark-theme-img" src="/images/logo-pink-white.png" alt="logo" />
                                 </Link>
                             </div>
                             {/* HEADER WHITE LOGO */}
                             <div className="desktoplogo">
-                                <Link href="/" className="logo-white"><img src="/images/logo-white.png" alt="logo" /></Link>
+                                <Link to="/" className="logo-white"><img src="/images/logo-white.png" alt="logo" /></Link>
                             </div>
                             {/* MAIN MENU */}
                             <nav className="wsmenu clearfix" style={{ height: `${isMobileMenu ? "100vh" : ""}` }}>
