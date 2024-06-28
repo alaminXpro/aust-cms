@@ -46,15 +46,12 @@ app.use('/api/auth', authRouter);
 // API logger
 app.use(log);
 
-// Determine the correct base path in Vercel environment
-const basePath = process.env.LAMBDA_TASK_ROOT ? path.join(process.env.LAMBDA_TASK_ROOT, 'client', 'def') : path.join(__dirname, 'client', 'def');
-
 // Serve static files
-app.use(express.static(path.join(basePath)));
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Default route
+// Catch-all handler for SPA
 app.get('*', (req, res) => {
-  res.sendFile(path.join(basePath, 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Error handling middleware
