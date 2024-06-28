@@ -15,7 +15,10 @@ const __dirname = path.resolve();
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+const corsOptions = {
+  origin: 'process.env.CLIENT_URL',
+};
+app.use(cors(corsOptions));
 
 // Start server
 app.listen(process.env.PORT, () => {
