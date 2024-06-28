@@ -12,7 +12,7 @@ export default function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-
+  const API_BASE = import.meta.env.VITE_API_BASE;
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
@@ -39,7 +39,7 @@ export default function Home() {
 
     try {
       setLoading(true);
-      const response = await fetch("/api/auth/signup", {
+      const response = await fetch(`${API_BASE}/api/auth/signup`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ export default function Home() {
 
       const result = await signInWithPopup(auth, provider);
 
-      const res = await fetch('/api/auth/google', {
+      const res = await fetch(`${API_BASE}/api/auth/google`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

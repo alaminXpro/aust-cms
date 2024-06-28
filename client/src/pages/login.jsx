@@ -14,6 +14,7 @@ export default function Home() {
   const { loading, error } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const API_BASE = import.meta.env.VITE_API_BASE;
 
   useEffect(() => {
     // Dispatch an action to reset the error state when the component mounts
@@ -34,13 +35,13 @@ export default function Home() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       dispatch(signInStart());
-      const res = await fetch("/api/auth/signin", {
-        method: "POST",
+      const res = await fetch(`${API_BASE}/api/auth/signin`, {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
       });
@@ -51,7 +52,7 @@ export default function Home() {
         return;
       }
       dispatch(signInSuccess(data));
-      navigate("/");
+      navigate('/');
     } catch (error) {
       dispatch(signInFailure(error.message));
     }
@@ -63,7 +64,7 @@ export default function Home() {
 
       const result = await signInWithPopup(auth, provider);
 
-      const res = await fetch('/api/auth/google', {
+      const res = await fetch(`${API_BASE}/api/auth/google`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -78,7 +79,8 @@ export default function Home() {
       console.log(data);
       if (!res.ok) {
         // Adjusted to check for data.error instead of data.message
-        const errorMessage = data.error || "An unexpected error occurred. Please try again.";
+        const errorMessage =
+          data.error || 'An unexpected error occurred. Please try again.';
         throw new Error(errorMessage);
       }
       dispatch(signInSuccess(data));
@@ -117,28 +119,29 @@ export default function Home() {
                           </p>
                         </div>
                       </div>
-                    </div>{" "}
+                    </div>{' '}
                     {/* END LOGIN PAGE TEXT */}
                     {/* LOGIN FORM */}
                     <div className="col-md-6">
                       <div className="register-page-form">
                         {/* Google Button */}
                         <div className="col-md-12">
-                            <button onClick={handleGoogleClick}  className="btn btn-google ico-left">
-                              <img
-                                src="/images/png_icons/google.png"
-                                alt="google-icon"
-                              />{" "}
-                              Sign in with Google
-                            </button>
-                            
-                          </div>
+                          <button
+                            onClick={handleGoogleClick}
+                            className="btn btn-google ico-left"
+                          >
+                            <img
+                              src="/images/png_icons/google.png"
+                              alt="google-icon"
+                            />{' '}
+                            Sign in with Google
+                          </button>
+                        </div>
                         <form
                           onSubmit={handleSubmit}
                           name="signinform"
-                          className="row sign-in-form">
-                        
-                          
+                          className="row sign-in-form"
+                        >
                           {/* Login Separator */}
                           <div className="col-md-12 text-center">
                             <div className="separator-line">
@@ -167,13 +170,13 @@ export default function Home() {
                               >
                                 <span
                                   className={`flaticon-visibility eye-pass ${
-                                    isPasswordVisible ? "visible" : ""
+                                    isPasswordVisible ? 'visible' : ''
                                   }`}
                                 />
                               </span>
                               <input
                                 className="form-control password"
-                                type={isPasswordVisible ? "text" : "password"}
+                                type={isPasswordVisible ? 'text' : 'password'}
                                 placeholder="* * * * * * * *"
                                 id="password"
                                 onChange={handleChange}
@@ -196,7 +199,7 @@ export default function Home() {
                           {/* Form Submit Button */}
                           <div className="col-md-12">
                             <button
-                               disabled={loading}
+                              disabled={loading}
                               className="btn btn--theme hover--theme submit"
                             >
                               {loading ? 'Loading...' : 'Sign In'}
@@ -205,28 +208,30 @@ export default function Home() {
                           {/* Sign Up Link */}
                           <div className="col-md-12">
                             <p className="create-account text-center">
-                              Don &apost;t have an account?{" "}
+                              Don't have an account?{' '}
                               <Link to="/signup" className="color--theme">
                                 Sign up
                               </Link>
                             </p>
-                            {error && <p className='text-red-500 mt-5'>{error}</p>}
+                            {error && (
+                              <p className="text-red-500 mt-5">{error}</p>
+                            )}
                           </div>
                         </form>
                       </div>
-                    </div>{" "}
+                    </div>{' '}
                     {/* END LOGIN FORM */}
-                  </div>{" "}
+                  </div>{' '}
                   {/* End row */}
-                </div>{" "}
+                </div>{' '}
                 {/* End register-page-wrapper */}
-              </div>{" "}
+              </div>{' '}
               {/* END REGISTER PAGE WRAPPER */}
-            </div>{" "}
+            </div>{' '}
             {/* End row */}
-          </div>{" "}
+          </div>{' '}
           {/* End container */}
-        </div>{" "}
+        </div>{' '}
         {/* END LOGIN PAGE */}
       </div>
     </>
