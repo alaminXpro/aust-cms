@@ -17,7 +17,6 @@ export default function Home() {
   const API_BASE = import.meta.env.VITE_API_BASE;
 
   useEffect(() => {
-    // Dispatch an action to reset the error state when the component mounts
     dispatch(signInFailure(null));
   }, [dispatch]);
 
@@ -33,6 +32,7 @@ export default function Home() {
       [e.target.id]: e.target.value,
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -51,12 +51,14 @@ export default function Home() {
         dispatch(signInFailure(data.message));
         return;
       }
-      dispatch(signInSuccess(data));
-      navigate('/');
+      dispatch(signInSuccess(data)); // Update to dispatch `data.rest` as `currentUser`
+      localStorage.setItem('token', data.token); // Store token in localStorage
+      navigate('/dashboard');
     } catch (error) {
       dispatch(signInFailure(error.message));
     }
   };
+
   const handleGoogleClick = async () => {
     try {
       const provider = new GoogleAuthProvider();
@@ -78,53 +80,43 @@ export default function Home() {
       const data = await res.json();
       console.log(data);
       if (!res.ok) {
-        // Adjusted to check for data.error instead of data.message
         const errorMessage =
           data.error || 'An unexpected error occurred. Please try again.';
         throw new Error(errorMessage);
       }
-      dispatch(signInSuccess(data));
-      navigate('/');
+      dispatch(signInSuccess(data)); // Update to dispatch `data.rest` as `currentUser`
+      localStorage.setItem('token', data.token); // Store token in localStorage
+      navigate('/dashboard');
     } catch (error) {
       dispatch(signInFailure(error.message));
     }
   };
+
   return (
     <>
       <div id="page" className="page font--jakarta">
-        {/* LOGIN PAGE
-============================================= */}
         <div id="login" className="bg--scroll login-section division">
           <div className="container">
             <div className="row justify-content-center">
-              {/* REGISTER PAGE WRAPPER */}
               <div className="col-lg-11">
                 <div className="register-page-wrapper r-16 bg--fixed">
                   <div className="row">
-                    {/* LOGIN PAGE TEXT */}
                     <div className="col-md-6">
                       <div className="register-page-txt color--white">
-                        {/* Title */}
                         <h2 className="s-42 w-700">Welcome</h2>
                         <h2 className="s-42 w-700">back to AUSTCMS</h2>
-                        {/* Text */}
                         <p className="p-md mt-25">
-                          &ldquo;Welcome back! We missed you more than words can
-                          say.&rdquo;
+                          &ldquo;Welcome back! We missed you more than words can say.&rdquo;
                         </p>
-                        {/* Copyright */}
                         <div className="register-page-copyright">
                           <p className="p-sm">
                             © 2024 AUSTCMS. <span>All Rights Reserved</span>
                           </p>
                         </div>
                       </div>
-                    </div>{' '}
-                    {/* END LOGIN PAGE TEXT */}
-                    {/* LOGIN FORM */}
+                    </div>
                     <div className="col-md-6">
                       <div className="register-page-form">
-                        {/* Google Button */}
                         <div className="col-md-12">
                           <button
                             onClick={handleGoogleClick}
@@ -142,13 +134,11 @@ export default function Home() {
                           name="signinform"
                           className="row sign-in-form"
                         >
-                          {/* Login Separator */}
                           <div className="col-md-12 text-center">
                             <div className="separator-line">
                               Or, sign in with your email
                             </div>
                           </div>
-                          {/* Form Input */}
                           <div className="col-md-12">
                             <p className="p-sm input-header">Email address</p>
                             <input
@@ -160,7 +150,6 @@ export default function Home() {
                               onChange={handleChange}
                             />
                           </div>
-                          {/* Form Input */}
                           <div className="col-md-12">
                             <p className="p-sm input-header">Password</p>
                             <div className="wrap-input">
@@ -183,7 +172,6 @@ export default function Home() {
                               />
                             </div>
                           </div>
-                          {/* Reset Password Link */}
                           <div className="col-md-12">
                             <div className="reset-password-link">
                               <p className="p-sm">
@@ -196,7 +184,6 @@ export default function Home() {
                               </p>
                             </div>
                           </div>
-                          {/* Form Submit Button */}
                           <div className="col-md-12">
                             <button
                               disabled={loading}
@@ -205,7 +192,6 @@ export default function Home() {
                               {loading ? 'Loading...' : 'Sign In'}
                             </button>
                           </div>
-                          {/* Sign Up Link */}
                           <div className="col-md-12">
                             <p className="create-account text-center">
                               Don't have an account?{' '}
@@ -219,20 +205,13 @@ export default function Home() {
                           </div>
                         </form>
                       </div>
-                    </div>{' '}
-                    {/* END LOGIN FORM */}
-                  </div>{' '}
-                  {/* End row */}
-                </div>{' '}
-                {/* End register-page-wrapper */}
-              </div>{' '}
-              {/* END REGISTER PAGE WRAPPER */}
-            </div>{' '}
-            {/* End row */}
-          </div>{' '}
-          {/* End container */}
-        </div>{' '}
-        {/* END LOGIN PAGE */}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
