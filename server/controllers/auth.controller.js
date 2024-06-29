@@ -2,7 +2,21 @@ import User from '../models/user.model.js';
 import bcryptjs from 'bcryptjs';
 import { errorHandler } from '../utils/error.js';
 import jwt from 'jsonwebtoken';
+import nodemailer from 'nodemailer';
+
 const lifetime = "3600000";
+
+// Configure Nodemailer
+const transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.EMAIL_PASSWORD,
+  },
+  debug: true, // Enable debug mode
+}, {
+  from: process.env.EMAIL, // Default from address
+});
 
 export const test = (req, res) => {
   res.status(200).json({
@@ -131,4 +145,54 @@ export const deleteAllUser = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-}
+};
+
+// Generate Password Reset Token
+export const forgotPassword = async (req, res, next) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) return next(errorHandler(404, 'User not found!'));
+
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+    const resetLink = `${process.env.CLIENT_URL}/reset-password/${token}`;
+
+    const mailOptions = {
+      from: process.env.EMAIL,
+      to: user.email,
+      subject: 'Password Reset',
+      html: `<p>Click <a href="${resetLink}">here</a> to reset your password.</p>`,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error('Error sending email:', error);
+        return next(errorHandler(500, 'Error sending email!'));
+      }
+      console.log('Email sent: ' + info.response);
+      res.status(200).json({ message: 'Password reset link sent to your email!' });
+    });
+  } catch (error) {
+    console.error('Error in forgotPassword:', error);
+    next(error);
+  }
+};
+
+// Reset Password
+export const resetPassword = async (req, res, next) => {
+  try {
+    const decoded = jwt.verify(req.params.token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.id);
+    if (!user) return next(errorHandler(404, 'User not found!'));
+
+    const hashedPassword = bcryptjs.hashSync(req.body.password, 10);
+
+    user.password = hashedPassword;
+    await user.save();
+
+    res.status(200).json({ message: 'Password has been reset!' });
+  } catch (error) {
+    console.error('Error in resetPassword:', error);
+    next(error);
+  }
+};
