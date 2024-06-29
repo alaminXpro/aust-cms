@@ -91,8 +91,9 @@ export default function Home() {
         const errorMessage = data.error || "An unexpected error occurred. Please try again.";
         throw new Error(errorMessage);
       }
-      dispatch(signInSuccess(data));
-      navigate('/');
+      dispatch(signInSuccess(data)); // Update to dispatch `data.rest` as `currentUser`
+      localStorage.setItem('token', data.token); // Store token in localStorage
+      navigate('/dashboard');
     } catch (error) {
       //console.error("Signup error:", error);
       setError(error.message);
