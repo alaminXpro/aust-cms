@@ -11,6 +11,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
+      validate: {
+        validator: function (email) {
+          return email.endsWith('@aust.edu');
+        },
+        message: 'Email must end with @aust.edu',
+      },
     },
     password: {
       type: String,
