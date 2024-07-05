@@ -40,6 +40,7 @@ export default function Home() {
       dispatch(signInStart());
       const res = await fetch(`${API_BASE}/api/auth/signin`, {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -52,7 +53,6 @@ export default function Home() {
         return;
       }
       dispatch(signInSuccess(data)); // Update to dispatch `data.rest` as `currentUser`
-      localStorage.setItem('token', data.token); // Store token in localStorage
       navigate('/dashboard');
     } catch (error) {
       dispatch(signInFailure(error.message));
@@ -68,6 +68,7 @@ export default function Home() {
 
       const res = await fetch(`${API_BASE}/api/auth/google`, {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -85,7 +86,6 @@ export default function Home() {
         throw new Error(errorMessage);
       }
       dispatch(signInSuccess(data)); // Update to dispatch `data.rest` as `currentUser`
-      localStorage.setItem('token', data.token); // Store token in localStorage
       navigate('/dashboard');
     } catch (error) {
       dispatch(signInFailure(error.message));

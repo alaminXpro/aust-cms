@@ -41,6 +41,7 @@ export default function Home() {
       setLoading(true);
       const response = await fetch(`${API_BASE}/api/auth/signup`, {
         method: "POST",
+        credentials: "include",
         headers: {
           'Content-Type': 'application/json',
         },
@@ -74,6 +75,7 @@ export default function Home() {
 
       const res = await fetch(`${API_BASE}/api/auth/google`, {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -92,7 +94,6 @@ export default function Home() {
         throw new Error(errorMessage);
       }
       dispatch(signInSuccess(data)); // Update to dispatch `data.rest` as `currentUser`
-      localStorage.setItem('token', data.token); // Store token in localStorage
       navigate('/dashboard');
     } catch (error) {
       //console.error("Signup error:", error);

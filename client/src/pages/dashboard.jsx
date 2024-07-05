@@ -12,6 +12,7 @@ import {
   deleteUserFailure,
   signOutUserStart,
 } from '../redux/user/userSlice';
+import axios from 'axios';
 
 export default function Dashboard() {
   const fileRef = useRef(null);
@@ -61,48 +62,32 @@ export default function Dashboard() {
     e.preventDefault();
     try {
       dispatch(updateUserStart());
-      const token = currentUser.token; // Access token from currentUser
-      const res = await fetch(`${API_BASE}/api/user/${currentUser._id}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}` // Include token in request headers
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
-      if (data.success === false) {
-        dispatch(updateUserFailure(data.message));
+      const res = await axios.post(
+        `${API_BASE}/api/user/${currentUser._id}`,
+        formData,
+        { withCredentials: true }
+      );
+      if (res.data.success === false) {
+        dispatch(updateUserFailure(res.data.message));
         return;
       }
-      dispatch(updateUserSuccess(data));
+      dispatch(updateUserSuccess(res.data));
       setUpdateSuccess(true);
-      console.log('Updated user:', data); // Log the updated user info
+      console.log('Updated user:', res.data); // Log the updated user info
     } catch (error) {
       dispatch(updateUserFailure(error.message));
     }
   };
-  
-  
 
   const handleDeleteUser = async () => {
     try {
       dispatch(deleteUserStart());
-      const res = await fetch(`${API_BASE}/api/user/${currentUser._id}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${currentUser.token}`
-        },
-      });
-      const data = await res.json();
-      if (data.success === false) {
-        dispatch(deleteUserFailure(data.message));
+      const res = await axios.delete(`${API_BASE}/api/user/${currentUser._id}`, { withCredentials: true });
+      if (res.data.success === false) {
+        dispatch(deleteUserFailure(res.data.message));
         return;
       }
-      dispatch(deleteUserSuccess(data));
-        //delete localStorage.token;
-        localStorage.removeItem('token');
+      dispatch(deleteUserSuccess(res.data));
     } catch (error) {
       dispatch(deleteUserFailure(error.message));
     }
@@ -111,20 +96,16 @@ export default function Dashboard() {
   const handleSignOut = async () => {
     try {
       dispatch(signOutUserStart());
-      const res = await fetch(`${API_BASE}/api/auth/signout`);
-      const data = await res.json();
-      if (data.success === false) {
-        dispatch(deleteUserFailure(data.message));
+      const res = await axios.post(`${API_BASE}/api/auth/signout`, {}, { withCredentials: true });
+      if (res.data.success === false) {
+        dispatch(deleteUserFailure(res.data.message));
         return;
       }
-      dispatch(deleteUserSuccess(data));
-      //delete localStorage.token;
-        localStorage.removeItem('token');
+      dispatch(deleteUserSuccess(res.data));
     } catch (error) {
       dispatch(deleteUserFailure(error.message));
     }
   };
-  console.log(currentUser);
 
   return (
     <div className="container py-5">
@@ -187,31 +168,31 @@ export default function Dashboard() {
           />
         </div>
         <button
-  disabled={loading}
-  className={`px-4 py-2 font-bold text-white ${loading ? 'bg-blue-500' : 'bg-blue-700'} rounded`}
->
-  {loading ? 'Loading...' : 'Update'}
-</button>
+          disabled={loading}
+          className={`px-4 py-2 font-bold text-white ${loading ? 'bg-blue-500' : 'bg-blue-700'} rounded`}
+        >
+          {loading ? 'Loading...' : 'Update'}
+        </button>
 
-<button
-  type="button"
-  onClick={handleDeleteUser}
-  className="px-4 py-2 font-bold text-white bg-red-500 rounded"
->
-  Delete Account
-</button>
+        <button
+          type="button"
+          onClick={handleDeleteUser}
+          className="px-4 py-2 font-bold text-white bg-red-500 rounded"
+        >
+          Delete Account
+        </button>
 
-<button
-  type="button"
-  onClick={handleSignOut}
-  className="px-4 py-2 font-bold text-white bg-yellow-500 rounded"
->
-  Sign Out
-</button>
+        <button
+          type="button"
+          onClick={handleSignOut}
+          className="px-4 py-2 font-bold text-white bg-yellow-500 rounded"
+        >
+          Sign Out
+        </button>
       </form>
-        <Link to="/" className="btn text-center d-block mt-3">
-            Back to home
-        </Link>
+      <Link to="/" className="btn text-center d-block mt-3">
+        Back to home
+      </Link>
     </div>
   );
 }
