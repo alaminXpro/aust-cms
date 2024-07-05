@@ -9,13 +9,13 @@ const lifetime = "3600000";
 // Configure Nodemailer
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
+  host: 'smtp.gmail.com',
+  secure: false,
   auth: {
     user: process.env.EMAIL,
     pass: process.env.EMAIL_PASSWORD,
   },
   debug: true, // Enable debug mode
-}, {
-  from: process.env.EMAIL, // Default from address
 });
 
 export const test = (req, res) => {
@@ -58,7 +58,7 @@ export const signin = async (req, res, next) => {
     const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET, { expiresIn: lifetime });
     const { password: pass, ...rest } = validUser._doc;
     res
-      .cookie('access_token', token, {
+      .cookie('token', token, {
         maxAge: lifetime,
         httpOnly: true,
         secure: true,
@@ -66,7 +66,7 @@ export const signin = async (req, res, next) => {
         path: "/",
       })
       .status(200)
-      .json({...rest, token});
+      .json(rest);
   } catch (error) {
     next(error);
   }
@@ -82,7 +82,7 @@ export const google = async (req, res, next) => {
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
       const { password: pass, ...rest } = user._doc;
       res
-      .cookie('access_token', token, {
+      .cookie("token", token, {
         maxAge: lifetime,
         httpOnly: true,
         secure: true,
@@ -90,7 +90,7 @@ export const google = async (req, res, next) => {
         path: "/",
       })
         .status(200)
-        .json({...rest, token});
+        .json(rest);
     } else {
       const generatedPassword =
         Math.random().toString(36).slice(-8) +
@@ -109,7 +109,7 @@ export const google = async (req, res, next) => {
       const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
       const { password: pass, ...rest } = newUser._doc;
       res
-      .cookie('access_token', token, {
+      .cookie("token", token, {
         maxAge: lifetime,
         httpOnly: true,
         secure: true,
@@ -117,7 +117,7 @@ export const google = async (req, res, next) => {
         path: "/",
       })
         .status(200)
-        .json({...rest, token});
+        .json(rest);
     }
   } catch (error) {
     next(error);
@@ -126,7 +126,7 @@ export const google = async (req, res, next) => {
 
 export const signOut = async (req, res, next) => {
   try {
-    res.clearCookie('access_token',{
+    res.clearCookie("token",{
       httpOnly: true,
       secure: true,
       sameSite: "none",
