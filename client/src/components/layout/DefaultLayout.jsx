@@ -1,12 +1,11 @@
 import { Suspense, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import App from '../../App';
-import { persistor } from '../../redux/store';
 import { toggleSidebar } from '/src/redux/themeConfigSlice.js';
-// import Footer from './Footer';
-// import Header from './Header';
-// import Setting from './Setting';
-// import Sidebar from './Sidebar';
+import Footer from './Footer';
+import Header from './Header';
+import Setting from './Setting';
+import Sidebar from './Sidebar.jsx';
 // import Portals from '../../components/Portals';
 
 const DefaultLayout = ({ children }) => {
