@@ -25,7 +25,7 @@ const routes = [
     path: '/',
     element: <PrivateRoute />,
     children: [
-      { path: 'dashboard', element: <Dashboard />, layout: 'blank' },
+      { path: 'dashboard', element: <Dashboard /> },
       { path: 'profile', element: <Profile />, layout: 'blank' },
     ],
   },
