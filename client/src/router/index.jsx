@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
-import BlankLayout from '/src/components/layout/BlankLayout.jsx';
-import DefaultLayout from '/src/components/layout/DefaultLayout.jsx';
+import BlankLayout from '../components/layout/BlankLayout';
+import DefaultLayout from '../components/layout/DefaultLayout';
 import { routes } from './routes';
 
 const finalRoutes = routes.map((route) => {

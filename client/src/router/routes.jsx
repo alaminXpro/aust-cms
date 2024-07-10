@@ -19,14 +19,14 @@ const routes = [
   { path: '/login', element: <Login />, layout: 'blank' },
   { path: '/signup', element: <Signup />, layout: 'blank' },
   { path: '/reset-password', element: <ResetPassword />, layout: 'blank' },
+  { path: 'profile', element: <Profile />, layout: 'blank'},
 
   // Private routes
   {
     path: '/',
     element: <PrivateRoute />,
     children: [
-      { path: 'dashboard', element: <Dashboard /> },
-      { path: 'profile', element: <Profile />, layout: 'blank' },
+      { path: 'dashboard', element: <Dashboard />},
     ],
   },
 
