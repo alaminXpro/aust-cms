@@ -1,12 +1,13 @@
 import { Suspense, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import App from '../../App';
-import { toggleSidebar } from '/src/redux/themeConfigSlice.js';
+import { toggleSidebar } from '/src/redux/themeConfigSlice';
 import Footer from './Footer';
 import Header from './Header';
 import Setting from './Setting';
-import Sidebar from './Sidebar.jsx';
-// import Portals from '../../components/Portals';
+import Sidebar from './Sidebar';
+import Portals from '../../components/Portals';
+import '/src/tailwind.css';
 
 const DefaultLayout = ({ children }) => {
     const themeConfig = useSelector((state) => state.themeConfig);
@@ -88,6 +89,7 @@ const DefaultLayout = ({ children }) => {
                         {/* END TOP NAVBAR */}
 
                         {/* BEGIN CONTENT AREA */}
+                        {/* <div> Hello from Default Layout</div> */}
                         <Suspense>
                             <div className={`${themeConfig.animation} p-6 animate__animated`}>{children}</div>
                         </Suspense>

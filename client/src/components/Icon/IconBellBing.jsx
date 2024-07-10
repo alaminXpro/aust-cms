@@ -1,12 +1,7 @@
-import { FC } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-interface IconBellBingProps {
-    className?: string;
-    fill?: boolean;
-    duotone?: boolean;
-}
-
-const IconBellBing: FC<IconBellBingProps> = ({ className, fill = false, duotone = true }) => {
+const IconBellBing = ({ className, fill = false, duotone = true }) => {
     return (
         <>
             {!fill ? (
@@ -46,6 +41,12 @@ const IconBellBing: FC<IconBellBingProps> = ({ className, fill = false, duotone 
             )}
         </>
     );
+};
+
+IconBellBing.propTypes = {
+  className: PropTypes.string,
+  fill: PropTypes.bool,
+  duotone: PropTypes.bool,
 };
 
 export default IconBellBing;

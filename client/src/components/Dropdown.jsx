@@ -2,7 +2,7 @@ import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 're
 import { usePopper } from 'react-popper';
 
 const Dropdown = (props, forwardedRef) => {
-    const [visibility, setVisibility] = useState<any>(false);
+    const [visibility, setVisibility] = useState(false);
 
     const referenceRef = useRef();
     const popperRef = useRef();
