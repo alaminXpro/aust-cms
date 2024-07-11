@@ -15,8 +15,15 @@ const __dirname = path.resolve();
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
+const clientURLs = process.env.CLIENT_URL.split(',');
 const corsOptions = {
-  origin: process.env.CLIENT_URL,
+  origin: (origin, callback) => {
+    if (clientURLs.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
 };
 app.use(cors(corsOptions));

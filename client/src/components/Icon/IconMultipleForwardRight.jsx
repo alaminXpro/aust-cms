@@ -1,12 +1,6 @@
-import { FC } from 'react';
+import React from 'react';
 
-interface IconMultipleForwardRightProps {
-    className?: string;
-    fill?: boolean;
-    duotone?: boolean;
-}
-
-const IconMultipleForwardRight: FC<IconMultipleForwardRightProps> = ({ className, fill = false, duotone = true }) => {
+const IconMultipleForwardRight = ({ className, fill = false, duotone = true }) => {
     return (
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
             <path
