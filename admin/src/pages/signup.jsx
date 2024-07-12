@@ -19,7 +19,7 @@ import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 
 const LoginCover = () => {
   const [formData, setFormData] = useState({});
-  const { loading, error } = useSelector((state) => state.user);
+  const {loading, error} = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const API_BASE = import.meta.env.VITE_API_BASE;
@@ -65,7 +65,7 @@ const LoginCover = () => {
 
     // Validate email
     if (!validateEmail(formData.email)) {
-      setError("Email must have @aust.edu domain.");
+      dispatch(signUpFailure('Please use your AUST email to sign up.'));
       return;
     }
 
@@ -86,6 +86,7 @@ const LoginCover = () => {
       if (!response.ok) {
         // Adjusted to check for data.error instead of data.message
         dispatch(signUpFailure(data.error));
+        return;
       }
       dispatch(signUpSuccess(data));
       // Assuming the signup was successful, navigate to another page or show success message
@@ -98,6 +99,7 @@ const LoginCover = () => {
 
   const handleGoogleClick = async () => {
     try {
+      dispatch(signUpStart());
       const provider = new GoogleAuthProvider();
       const auth = getAuth(app);
 
@@ -120,10 +122,10 @@ const LoginCover = () => {
         const errorMessage = data.error || 'An unexpected error occurred. Please try again.';
         throw new Error(errorMessage);
       }
-      dispatch(signInSuccess(data));
+      dispatch(signUpSuccess(data));
       navigate('/');
     } catch (error) {
-      dispatch(signInFailure(error.message));
+      dispatch(signUpFailure(error.message));
     }
   };
 
