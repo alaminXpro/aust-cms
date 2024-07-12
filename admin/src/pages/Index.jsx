@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 import ReactApexChart from 'react-apexcharts';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import Dropdown from '../components/Dropdown';
@@ -25,11 +26,18 @@ const Index = () => {
     useEffect(() => {
         dispatch(setPageTitle('Sales Admin'));
     });
+    const API_BASE = import.meta.env.VITE_API_BASE;
     const isDark = useSelector((state) => state.themeConfig.theme === 'dark' || state.themeConfig.isDarkMode);
     const isRtl = useSelector((state) => state.themeConfig.rtlClass) === 'rtl' ? true : false;
 
     const [loading] = useState(false);
-
+    //call api wiht credentials
+    const fetchData = async () => {
+      const res = await axios.get(`${API_BASE}/api/admin/test`, { withCredentials: true });
+      console.log(res);
+    };
+    
+    fetchData();
 
     return (
         <div>
@@ -43,6 +51,8 @@ const Index = () => {
                     <span>Sales</span>
                 </li>
             </ul>
+
+
             
         </div>
     );
