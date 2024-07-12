@@ -86,7 +86,7 @@ export default function Home() {
         throw new Error(errorMessage);
       }
       dispatch(signInSuccess(data)); // Update to dispatch `data.rest` as `currentUser`
-      navigate('/dashboard');
+      navigate('/');
     } catch (error) {
       dispatch(signInFailure(error.message));
     }

@@ -34,7 +34,7 @@ const Index = () => {
     //call api wiht credentials
     const fetchData = async () => {
       const res = await axios.get(`${API_BASE}/api/admin/test`, { withCredentials: true });
-      console.log(res);
+      //console.log(res);
     };
     
     fetchData();
