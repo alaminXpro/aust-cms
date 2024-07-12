@@ -5,6 +5,7 @@ import PrivateRoute from './PrivateRoute';
 // Public routes
 const Login = lazy(() => import('../pages/login'));
 const Error404 = lazy(() => import('../pages/Error404'));
+const Signup = lazy(() => import('../pages/signup'));
 
 // Private routes
 const Index = lazy(() => import('../pages/Index'));
@@ -12,6 +13,7 @@ const Index = lazy(() => import('../pages/Index'));
 const routes = [
   // Public routes
   { path: '/login', element: <Login />, layout: 'blank' },
+  {path: '/signup', element: <Signup />, layout: 'blank'},
 
   // Private routes
   {
