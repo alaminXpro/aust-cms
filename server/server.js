@@ -7,6 +7,8 @@ import cors from 'cors';
 import log from "./middlewares/logger.js";
 import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
+import clubRouter from './routes/club.route.js';
+import adminRouter from './routes/admin.route.js';
 dotenv.config();
 
 const app = express();
@@ -50,6 +52,8 @@ app.get('/test', (req, res) => {
 });
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/club', clubRouter);
+app.use('/api/admin', adminRouter);
 
 // API logger
 app.use(log);
