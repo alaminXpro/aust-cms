@@ -16,6 +16,7 @@
     "@fullcalendar/interaction": "^6.1.14",
     "@fullcalendar/react": "^6.1.14",
     "@fullcalendar/timegrid": "^6.1.14",
+    "@heroicons/react": "^2.1.5",
     "@mantine/core": "^7.11.1",
     "@mantine/hooks": "^7.11.1",
     "@popperjs/core": "^2.11.8",
