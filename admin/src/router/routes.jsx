@@ -9,6 +9,9 @@ const Signup = lazy(() => import('../pages/signup'));
 
 // Private routes
 const Index = lazy(() => import('../pages/Index'));
+const AddClub = lazy(() => import('../pages/AddClub'));
+const EditClub = lazy(() => import('../pages/EditClub'));
+const Clubs = lazy(() => import('../pages/Clubs'));
 
 const routes = [
   // Public routes
@@ -21,6 +24,9 @@ const routes = [
     element: <PrivateRoute />,
     children: [
       { path: '/', element: <Index />},
+      { path: '/add/club', element: <AddClub />},
+      { path: '/clubs', element: <Clubs />},
+      { path: '/edit/club/:clubId', element: <EditClub /> },
     ],
   },
 

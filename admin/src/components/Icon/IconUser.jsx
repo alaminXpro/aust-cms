@@ -1,12 +1,6 @@
-import { FC } from 'react';
+import React from 'react';
 
-interface IconUserProps {
-    className?: string;
-    fill?: boolean;
-    duotone?: boolean;
-}
-
-const IconUser: FC<IconUserProps> = ({ className, fill = false, duotone = true }) => {
+const IconUser = ({ className, fill = false, duotone = true }) => {
     return (
         <>
             {!fill ? (
