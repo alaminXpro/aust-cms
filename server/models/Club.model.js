@@ -1,5 +1,3 @@
-// ServerBackend/models/Club.js
-
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
@@ -14,7 +12,7 @@ const clubSchema = new Schema({
   },
   adminId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'Admin',
     required: true
   },
   members: [{
@@ -28,6 +26,14 @@ const clubSchema = new Schema({
   joinRequests: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'JoinRequest'
+  }],
+  clubLogo: {
+    type: String, 
+    required: false 
+  },
+  clubImages: [{
+    type: String, 
+    required: false
   }]
 }, {
   timestamps: true

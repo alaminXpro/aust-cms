@@ -24,7 +24,7 @@ import IconMultipleForwardRight from '../components/Icon/IconMultipleForwardRigh
 const Index = () => {
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(setPageTitle('Sales Admin'));
+        dispatch(setPageTitle('Admin Dashboard'));
     });
     const API_BASE = import.meta.env.VITE_API_BASE;
     const isDark = useSelector((state) => state.themeConfig.theme === 'dark' || state.themeConfig.isDarkMode);
@@ -48,7 +48,7 @@ const Index = () => {
                     </Link>
                 </li>
                 <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-                    <span>Sales</span>
+                    <span>AUSTCMS Admin</span>
                 </li>
             </ul>
 

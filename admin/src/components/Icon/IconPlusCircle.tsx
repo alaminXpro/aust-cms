@@ -1,12 +1,6 @@
-import { FC } from 'react';
+import React from "react";
 
-interface IconPlusCircleProps {
-    className?: string;
-    fill?: boolean;
-    duotone?: boolean;
-}
-
-const IconPlusCircle: FC<IconPlusCircleProps> = ({ className, fill = false, duotone = true }) => {
+const IconPlusCircle = ({ className, fill = false, duotone = true }) => {
     return (
         <>
             {!duotone ? (
