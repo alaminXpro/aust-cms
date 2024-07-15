@@ -35,10 +35,6 @@ const userSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Club'
     }],
-    events: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Event'
-    }],
   },
   { timestamps: true }
 );
