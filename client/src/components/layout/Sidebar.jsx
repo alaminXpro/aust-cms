@@ -107,49 +107,49 @@ const Sidebar = () => {
                                 <AnimateHeight duration={300} height={currentMenu === 'dashboard' ? 'auto' : 0}>
                                     <ul className="sub-menu text-gray-500">
                                         <li>
-                                            <NavLink to="/">{t('sales')}</NavLink>
+                                            <NavLink to="/dashboard">{t('AUSTCMS')}</NavLink>
                                         </li>
                                         <li>
-                                            <NavLink to="/analytics">{t('analytics')}</NavLink>
+                                            <NavLink to="https://aust.edu" target='_blank'>{t('AUSTIUMS')}</NavLink>
                                         </li>
-                                        <li>
+                                        {/* <li>
                                             <NavLink to="/finance">{t('finance')}</NavLink>
                                         </li>
                                         <li>
                                             <NavLink to="/crypto">{t('crypto')}</NavLink>
-                                        </li>
+                                        </li> */}
                                     </ul>
                                 </AnimateHeight>
                             </li>
 
                             <h2 className="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
                                 <IconMinus className="w-4 h-5 flex-none hidden" />
-                                <span>{t('apps')}</span>
+                                <span>{t('clubs')}</span>
                             </h2>
 
                             <li className="nav-item">
                                 <ul>
                                     <li className="nav-item">
-                                        <NavLink to="/apps/chat" className="group">
+                                        <NavLink to="/clubs" className="group">
                                             <div className="flex items-center">
                                                 <IconMenuChat className="group-hover:!text-primary shrink-0" />
-                                                <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('chat')}</span>
+                                                <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('My Clubs')}</span>
                                             </div>
                                         </NavLink>
                                     </li>
                                     <li className="nav-item">
-                                        <NavLink to="/apps/mailbox" className="group">
+                                        <NavLink to="/join" className="group">
                                             <div className="flex items-center">
                                                 <IconMenuMailbox className="group-hover:!text-primary shrink-0" />
-                                                <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('mailbox')}</span>
+                                                <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Join to New Club')}</span>
                                             </div>
                                         </NavLink>
                                     </li>
                                     <li className="nav-item">
-                                        <NavLink to="/apps/todolist" className="group">
+                                        <NavLink to="/events" className="group">
                                             <div className="flex items-center">
                                                 <IconMenuTodo className="group-hover:!text-primary shrink-0" />
-                                                <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('todo_list')}</span>
+                                                <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('Events')}</span>
                                             </div>
                                         </NavLink>
                                     </li>
@@ -161,7 +161,7 @@ const Sidebar = () => {
                                             </div>
                                         </NavLink>
                                     </li>
-                                    <li className="nav-item">
+                                    {/* <li className="nav-item">
                                         <NavLink to="/apps/scrumboard" className="group">
                                             <div className="flex items-center">
                                                 <IconMenuScrumboard className="group-hover:!text-primary shrink-0" />
@@ -206,7 +206,7 @@ const Sidebar = () => {
                                                 </li>
                                             </ul>
                                         </AnimateHeight>
-                                    </li>
+                                    </li> */}
 
                                     <li className="nav-item">
                                         <NavLink to="/apps/calendar" className="group">
@@ -219,7 +219,7 @@ const Sidebar = () => {
                                 </ul>
                             </li>
 
-                            <h2 className="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
+                            {/* <h2 className="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">
                                 <IconMinus className="w-4 h-5 flex-none hidden" />
                                 <span>{t('user_interface')}</span>
                             </h2>
@@ -696,14 +696,14 @@ const Sidebar = () => {
                             </h2>
 
                             <li className="menu nav-item">
-                                <NavLink to="https://vristo.sbthemes.com" target="_blank" className="nav-link group">
+                                <NavLink to="" target="_blank" className="nav-link group">
                                     <div className="flex items-center">
                                         <IconMenuDocumentation className="group-hover:!text-primary shrink-0" />
                                         <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{t('documentation')}</span>
                                     </div>
                                 </NavLink>
-                            </li>
-                        </ul>
+                            </li> */}
+                        </ul> 
                     </PerfectScrollbar>
                 </div>
             </nav>

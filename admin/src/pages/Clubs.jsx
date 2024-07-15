@@ -64,7 +64,7 @@ const Clubs = () => {
         </li>
       </ul>
 
-      <div className="mb-5 flex items-start justify gap-3">
+      <div className="mb-2 grid grid-cols-1 lg:grid-cols-4 items-start justify gap-3">
         {clubs.map((club) => (
           <div key={club._id} className="relative max-w-[19rem] w-full bg-white shadow-md rounded border border-white-light dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none">
             <Link to={`/edit/club/${club._id}`} type="button" className="absolute top-2 right-2 btn btn-secondary">
