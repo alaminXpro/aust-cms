@@ -36,7 +36,7 @@ const logout = {
 const refreshTokens = {
   body: Joi.object().keys({
     refreshToken: Joi.string().optional(),
-  }),
+  }).unknown(true),
   cookies: Joi.object().keys({
     refreshToken: Joi.string().optional(),
     accessToken: Joi.string().optional(),
