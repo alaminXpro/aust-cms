@@ -14,7 +14,8 @@ const userSlice = createSlice({
       state.loading = true;
     },
     signInSuccess: (state, action) => {
-      state.currentUser = action.payload;
+      state.currentUser = action.payload.user;
+      localStorage.setItem('accessToken', action.payload.tokens.access.token);
       state.loading = false;
       state.error = null;
     },
@@ -26,7 +27,8 @@ const userSlice = createSlice({
       state.loading = true;
     },
     signUpSuccess: (state, action) => {
-      state.currentUser = action.payload;
+      state.currentUser = action.payload.user;
+      localStorage.setItem('accessToken', action.payload.tokens.access.token);
       state.loading = false;
       state.error = null;
     },
@@ -43,20 +45,8 @@ const userSlice = createSlice({
       state.error = null;
     },
     updateUserFailure: (state, action) => {
+      state.loading = false;
       state.error = action.payload;
-      state.loading = false;
-    },
-    deleteUserStart: (state) => {
-      state.loading = true;
-    },
-    deleteUserSuccess: (state) => {
-      state.currentUser = null;
-      state.loading = false;
-      state.error = null;
-    },
-    deleteUserFailure: (state, action) => {
-      state.error = action.payload;
-      state.loading = false;
     },
     signOutUserStart: (state) => {
       state.loading = true;
@@ -65,6 +55,7 @@ const userSlice = createSlice({
       state.currentUser = null;
       state.loading = false;
       state.error = null;
+      localStorage.removeItem('accessToken');
     },
     signOutUserFailure: (state, action) => {
       state.error = action.payload;
@@ -83,9 +74,6 @@ export const {
   updateUserFailure,
   updateUserSuccess,
   updateUserStart,
-  deleteUserFailure,
-  deleteUserSuccess,
-  deleteUserStart,
   signOutUserFailure,
   signOutUserSuccess,
   signOutUserStart,

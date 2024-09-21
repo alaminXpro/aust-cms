@@ -134,7 +134,7 @@ const themeConfigSlice = createSlice({
         },
 
         setPageTitle(state, { payload }) {
-            document.title = `${payload} | AUSTCMS - AUST CLUB MANAGEMENT SYSTEM`;
+            document.title = `${payload} | AUST CLUB MANAGEMENT SYSTEM`;
         },
     },
 });
