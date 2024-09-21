@@ -1,12 +1,6 @@
-import { FC } from 'react';
 
-interface IconTwitterProps {
-    className?: string;
-    fill?: boolean;
-    duotone?: boolean;
-}
 
-const IconTwitter: FC<IconTwitterProps> = ({ className, fill = false, duotone = true }) => {
+const IconTwitter = ({ className, fill = false, duotone = true }) => {
     return (
         <>
             {fill ? (
