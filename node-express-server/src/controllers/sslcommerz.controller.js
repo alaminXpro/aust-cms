@@ -3,7 +3,7 @@ const { getUserById } = require('../services/user.service');
 const { getClubById, addUserToPendingList } = require('../services/club.service');
 const catchAsync = require('../utils/catchAsync');
 const httpStatus = require('http-status');
-
+const config = require('../config/config');
 const initiatePayment = catchAsync(async (req, res) => {
   const user = await getUserById(req.body.userId);
   if (!user) {
@@ -21,19 +21,19 @@ const initiatePayment = catchAsync(async (req, res) => {
 const paymentSuccess = catchAsync(async (req, res) => {
   const transaction = await sslcommerzService.findTransaction(req.body.tran_id);
   if (!transaction) {
-    return res.redirect(`http://localhost:5173/payment-failed/${req.body.tran_id}`);
+    return res.redirect(`${config.clientURL}/payment-failed/${req.body.tran_id}`);
   }
   const response = await sslcommerzService.validatePayment(req.body.val_id);
   if(!response || response.status !== 'VALID') {
     // Remove transaction if payment is not valid
     await transaction.deleteOne();
-    return res.redirect(`http://localhost:5173/payment-failed/${req.body.tran_id}`);
+    return res.redirect(`${config.clientURL}/payment-failed/${req.body.tran_id}`);
   }
   transaction.paymentStatus = 'PAID';
   await transaction.save();
   await addUserToPendingList(transaction.clubId, transaction.userId);
   console.log('Payment successful: ', transaction);
-  res.redirect(`http://localhost:5173/payment-success/${req.body.tran_id}`);
+  res.redirect(`${config.clientURL}/payment-success/${req.body.tran_id}`);
 });
 
 const paymentFail = catchAsync(async (req, res) => {
@@ -42,7 +42,7 @@ const paymentFail = catchAsync(async (req, res) => {
   if (transaction) {
     await transaction.deleteOne();
   }
-  res.redirect(`http://localhost:5173/payment-failed/${req.body.tran_id}`);
+  res.redirect(`${config.clientURL}/payment-failed/${req.body.tran_id}`);
 });
 
 const paymentCancel = catchAsync(async (req, res) => {
@@ -50,7 +50,7 @@ const paymentCancel = catchAsync(async (req, res) => {
   if (transaction) {
     await transaction.deleteOne();
   }
-  res.redirect(`http://localhost:5173/payment-cancel/${req.body.tran_id}`);
+  res.redirect(`${config.clientURL}/payment-cancel/${req.body.tran_id}`);
 });
 
 const getTranByUserId = catchAsync(async (req, res) => {
