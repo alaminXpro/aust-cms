@@ -8,14 +8,38 @@ const { OAuth2Client } = require('google-auth-library');
 const register = catchAsync(async (req, res) => {
   const user = await userService.createUser(req.body);
   const tokens = await tokenService.generateAuthTokens(user);
-
-  res.status(httpStatus.CREATED).send({ user, tokens });
+  res.cookie('accessToken', tokens.access.token, {
+    expires: new Date(tokens.access.expires),
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+  });
+  res.cookie('refreshToken', tokens.refresh.token, {
+    expires: new Date(tokens.refresh.expires),
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+  });
 });
 
 const login = catchAsync(async (req, res) => {
   const { email, password } = req.body;
   const user = await authService.loginUserWithEmailAndPassword(email, password);
   const tokens = await tokenService.generateAuthTokens(user);
+
+  res.cookie('accessToken', tokens.access.token, {
+    expires: new Date(tokens.access.expires),
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+  });
+
+  res.cookie('refreshToken', tokens.refresh.token, {
+    expires: new Date(tokens.refresh.expires),
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+  });
 
   res.send({ user, tokens });
 });
@@ -45,6 +69,20 @@ const googleAuth = catchAsync(async (req, res) => {
   }
 
   const tokens = await tokenService.generateAuthTokens(user);
+
+  res.cookie('accessToken', tokens.access.token, {
+    expires: new Date(tokens.access.expires),
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+  });
+
+  res.cookie('refreshToken', tokens.refresh.token, {
+    expires: new Date(tokens.refresh.expires),
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+  });
 
   res.send({ user, tokens });
 });
