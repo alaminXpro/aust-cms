@@ -72,6 +72,7 @@ const LoginCover = () => {
       Cookies.set('accessToken', res.data.tokens.access.token,
         {
           expires: new Date(res.data.tokens.access.expires),
+          httpOnly: true,
           secure: true,
           sameSite: 'none',
         }
@@ -79,6 +80,7 @@ const LoginCover = () => {
       Cookies.set('refreshToken', res.data.tokens.refresh.token,
         {
           expires: new Date(res.data.tokens.refresh.expires),
+          httpOnly: true,
           secure: true,
           sameSite: 'none',
         }
@@ -101,6 +103,7 @@ const LoginCover = () => {
       Cookies.set('accessToken', res.data.tokens.access.token,
         {
           expires: new Date(res.data.tokens.access.expires),
+          httpOnly: true,
           secure: true,
           sameSite: 'none',
         }
@@ -108,6 +111,7 @@ const LoginCover = () => {
       Cookies.set('refreshToken', res.data.tokens.refresh.token,
         {
           expires: new Date(res.data.tokens.refresh.expires),
+          httpOnly: true,
           secure: true,
           sameSite: 'none',
         }

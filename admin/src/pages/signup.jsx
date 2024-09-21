@@ -82,6 +82,7 @@ const LoginCover = () => {
           expires: new Date(res.data.tokens.access.expires),
           secure: true,
           sameSite: 'none',
+          httpOnly: true,
         }
       );
       Cookies.set('refreshToken', res.data.tokens.refresh.token,
@@ -89,6 +90,7 @@ const LoginCover = () => {
           expires: new Date(res.data.tokens.refresh.expires),
           secure: true,
           sameSite: 'none',
+          httpOnly: true,
         }
       );
       dispatch(signUpSuccess(res.data));

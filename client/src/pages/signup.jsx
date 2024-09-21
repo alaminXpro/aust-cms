@@ -70,6 +70,7 @@ const LoginCover = () => {
         Cookies.set('accessToken', res.data.tokens.access.token,
         {
           expires: new Date(res.data.tokens.access.expires),
+          httpOnly: true,
           secure: true,
           sameSite: 'none',
         }
@@ -79,6 +80,7 @@ const LoginCover = () => {
           expires: new Date(res.data.tokens.refresh.expires),
           secure: true,
           sameSite: 'none',
+          httpOnly: true,
         }
       );
       await axios.post(`${API_BASE}/auth/send-verification-email`, {
@@ -102,6 +104,7 @@ const LoginCover = () => {
           expires: new Date(res.data.tokens.access.expires),
           secure: true,
           sameSite: 'none',
+          httpOnly: true,
         }
       );
       Cookies.set('refreshToken', res.data.tokens.refresh.token,
@@ -109,6 +112,7 @@ const LoginCover = () => {
           expires: new Date(res.data.tokens.refresh.expires),
           secure: true,
           sameSite: 'none',
+          httpOnly: true,
         }
       );
 
