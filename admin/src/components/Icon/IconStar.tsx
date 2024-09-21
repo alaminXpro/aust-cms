@@ -1,12 +1,8 @@
-import { FC } from 'react';
 
-interface IconStarProps {
-    className?: string;
-    fill?: boolean;
-    duotone?: boolean;
-}
 
-const IconStar: FC<IconStarProps> = ({ className, fill = false, duotone = true }) => {
+
+
+const IconStar = ({ className, fill = false, duotone = true }) => {
     return (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
             <path

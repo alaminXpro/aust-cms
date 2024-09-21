@@ -31,13 +31,6 @@ const Index = () => {
     const isRtl = useSelector((state) => state.themeConfig.rtlClass) === 'rtl' ? true : false;
 
     const [loading] = useState(false);
-    //call api wiht credentials
-    const fetchData = async () => {
-      const res = await axios.get(`${API_BASE}/api/admin/test`, { withCredentials: true });
-      //console.log(res);
-    };
-    
-    fetchData();
 
     return (
         <div>

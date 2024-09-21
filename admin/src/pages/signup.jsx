@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { setPageTitle, toggleRTL } from '/src/redux/themeConfigSlice.js';
 import Dropdown from '/src/components/Dropdown';
-import i18next from 'i18next';
+import i18next, { t } from 'i18next';
 import IconCaretDown from '/src/components/Icon/IconCaretDown';
 import IconMail from '/src/components/Icon/IconMail';
 import IconLockDots from '/src/components/Icon/IconLockDots';
@@ -16,6 +16,9 @@ import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { app } from '../firebase.js';
 import { signUpStart, signUpSuccess, signUpFailure } from '../redux/user/userSlice';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import Swal from 'sweetalert2';
 
 const LoginCover = () => {
   const [formData, setFormData] = useState({});
@@ -56,77 +59,50 @@ const LoginCover = () => {
     });
   };
 
-  const validateEmail = (email) => {
-    return email.endsWith('@aust.edu');
-  };
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate email
-    if (!validateEmail(formData.email)) {
-      dispatch(signUpFailure('Please use your AUST email to sign up.'));
-      return;
-    }
 
     try {
       dispatch(signUpStart());
-      const response = await fetch(`${API_BASE}/api/auth/signup`, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json(); // Assuming the server responds with JSON
-      console.log(data);
-
-      if (!response.ok) {
-        // Adjusted to check for data.error instead of data.message
-        dispatch(signUpFailure(data.error));
-        return;
+      const res = await axios.post(`${API_BASE}/auth/register`, formData, { withCredentials: true });
+      if(res.status !== 201) {
+        const errorMessage = res.data.errorMessage || 'Signup failed';
+        dispatch(signUpFailure(errorMessage));
+        throw new Error(errorMessage);
       }
-      dispatch(signUpSuccess(data));
+      if(res.data.user.role === 'user'){
+        dispatch(signUpFailure('You are not authorized to access this page'));
+        throw new Error('You are not authorized to access this page');
+      }
+      Cookies.set('accessToken', res.data.tokens.access.token,
+        {
+          expires: new Date(res.data.tokens.access.expires),
+          secure: true,
+          sameSite: 'none',
+        }
+      );
+      Cookies.set('refreshToken', res.data.tokens.refresh.token,
+        { 
+          expires: new Date(res.data.tokens.refresh.expires),
+          secure: true,
+          sameSite: 'none',
+        }
+      );
+      dispatch(signUpSuccess(res.data));
       // Assuming the signup was successful, navigate to another page or show success message
-      navigate("/login"); // Adjust the route as necessary
+      navigate("/"); // Adjust the route as necessary
     } catch (error) {
       //console.error("Signup error:", error);
         dispatch(signUpFailure(error.message));
+        navigate('/signup');
     }
   };
 
   const handleGoogleClick = async () => {
-    try {
-      dispatch(signUpStart());
-      const provider = new GoogleAuthProvider();
-      const auth = getAuth(app);
-
-      const result = await signInWithPopup(auth, provider);
-
-      const res = await fetch(`${API_BASE}/api/auth/google`, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: result.user.displayName,
-          email: result.user.email,
-          photo: result.user.photoURL,
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        const errorMessage = data.error || 'An unexpected error occurred. Please try again.';
-        throw new Error(errorMessage);
-      }
-      dispatch(signUpSuccess(data));
-      navigate('/');
-    } catch (error) {
-      dispatch(signUpFailure(error.message));
-    }
+    console.log('Google Clicked');
   };
 
   return (
@@ -147,7 +123,7 @@ const LoginCover = () => {
                 <img src="/assets/images/logo-pink.png" alt="Logo" className="w-full" />
               </Link>
               <div className="mt-24 hidden w-full max-w-[430px] lg:block">
-                <img src="/assets/images/auth/login.svg" alt="Cover Image" className="w-full" />
+                <img src="/assets/images/auth/register.svg" alt="Cover Image" className="w-full" />
               </div>
             </div>
           </div>
@@ -203,9 +179,9 @@ const LoginCover = () => {
               <form className="space-y-5 dark:text-white" onSubmit={handleSubmit}>
                 {error && <div className="text-red-500 text-sm">{error}</div>}
                 <div>
-                                    <label htmlFor="Name">Username</label>
+                                    <label htmlFor="Name">Name</label>
                                     <div className="relative text-white-dark">
-                                        <input onChange={handleChange} id="username" type="text" placeholder="Enter Username" className="form-input ps-10 placeholder:text-white-dark" />
+                                        <input onChange={handleChange} id="name" type="text" placeholder="Enter Name" className="form-input ps-10 placeholder:text-white-dark" />
                                         <span className="absolute start-4 top-1/2 -translate-y-1/2">
                                             <IconUser fill={true} />
                                         </span>

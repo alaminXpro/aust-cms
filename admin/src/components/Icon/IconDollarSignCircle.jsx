@@ -1,21 +1,8 @@
-import React from 'react';
 
-const IconDollarSignCircle = ({ className, fill = false, duotone = true }) => {
+const IconDollarSignCircle = (duotone = true ) => {
     return (
-        <>
-            {!fill ? (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-                    <circle opacity={duotone ? '0.5' : '1'} cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
-                    <path d="M12 6V18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    <path
-                        d="M15 9.5C15 8.11929 13.6569 7 12 7C10.3431 7 9 8.11929 9 9.5C9 10.8807 10.3431 12 12 12C13.6569 12 15 13.1193 15 14.5C15 15.8807 13.6569 17 12 17C10.3431 17 9 15.8807 9 14.5"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                    />
-                </svg>
-            ) : (
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+       
+                <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         opacity={duotone ? '0.5' : '1'}
                         fillRule="evenodd"
@@ -28,8 +15,6 @@ const IconDollarSignCircle = ({ className, fill = false, duotone = true }) => {
                         fill={duotone ? 'currentColor' : 'white'}
                     />
                 </svg>
-            )}
-        </>
     );
 };
 export default IconDollarSignCircle;

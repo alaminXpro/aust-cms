@@ -15,6 +15,9 @@ import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { app } from '../firebase.js';
 import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import Swal from 'sweetalert2';
 
 const LoginCover = () => {
   const [formData, setFormData] = useState({});
@@ -23,7 +26,7 @@ const LoginCover = () => {
   const dispatch = useDispatch();
   const API_BASE = import.meta.env.VITE_API_BASE;
   useEffect(() => {
-    dispatch(setPageTitle('Login'));
+    dispatch(setPageTitle('AUSTCMS Admin Login'));
   });
 
   const isRtl = useSelector((state) => state.themeConfig.rtlClass) === 'rtl';
@@ -60,55 +63,46 @@ const LoginCover = () => {
 
     try {
       dispatch(signInStart());
-      const res = await fetch(`${API_BASE}/api/auth/signin`, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
-      if (data.success === false) {
-        dispatch(signInFailure(data.message));
-        return;
+      const res = await axios.post(`${API_BASE}/auth/login`, {
+        email: formData.email,
+        password: formData.password,
+      }, { withCredentials: true });
+      if (res.status !== 200) {
+        dispatch(signInFailure(res.data.errorMessage));
+        throw new Error(res.data.errorMessage);
       }
-      dispatch(signInSuccess(data));
+      
+      if(res.data.user.role === 'user'){
+        throw new Error('You are not authorized to access this page');
+      }
+      Cookies.set('accessToken', res.data.tokens.access.token,
+        {
+          expires: new Date(res.data.tokens.access.expires),
+          secure: true,
+          sameSite: 'none',
+        }
+      );
+      Cookies.set('refreshToken', res.data.tokens.refresh.token,
+        {
+          expires: new Date(res.data.tokens.refresh.expires),
+          secure: true,
+          sameSite: 'none',
+        }
+      );
+      dispatch(signInSuccess(res.data));
       navigate('/');
     } catch (error) {
       dispatch(signInFailure(error.message));
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error.message,
+      });
     }
   };
 
   const handleGoogleClick = async () => {
-    try {
-      const provider = new GoogleAuthProvider();
-      const auth = getAuth(app);
-
-      const result = await signInWithPopup(auth, provider);
-
-      const res = await fetch(`${API_BASE}/api/auth/google`, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: result.user.displayName,
-          email: result.user.email,
-          photo: result.user.photoURL,
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        const errorMessage = data.error || 'An unexpected error occurred. Please try again.';
-        throw new Error(errorMessage);
-      }
-      dispatch(signInSuccess(data));
-      navigate('/');
-    } catch (error) {
-      dispatch(signInFailure(error.message));
-    }
+    console.log('Google Clicked');
   };
 
   return (
@@ -267,7 +261,7 @@ const LoginCover = () => {
                 </ul>
               </div>
               <div className="text-center dark:text-white">
-                Don't have an account ?&nbsp;
+                Do not have an account?&nbsp;
                 <Link to="/signup" className="uppercase text-primary underline transition hover:text-black dark:hover:text-white">
                   SIGN UP
                 </Link>
