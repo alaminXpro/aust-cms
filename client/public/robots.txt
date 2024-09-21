@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aust-cms.vercel.app/sitemap.xml
