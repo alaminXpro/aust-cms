@@ -16,9 +16,6 @@ const login = catchAsync(async (req, res) => {
   const { email, password } = req.body;
   const user = await authService.loginUserWithEmailAndPassword(email, password);
   const tokens = await tokenService.generateAuthTokens(user);
-  console.log(tokens);
-
-
 
   res.send({ user, tokens });
 });
@@ -78,17 +75,15 @@ const refreshTokens = catchAsync(async (req, res) => {
   }
   const tokens = await authService.refreshAuth(refreshToken);
 
-  const refreshTokenMaxAge = new Date(tokens.refresh.expires).getTime() - Date.now();
   res.cookie('refreshToken', tokens.refresh.token, {
-    maxAge: refreshTokenMaxAge, // Set maxAge in milliseconds
-    httpOnly: config.env === 'production',
+    expires: new Date(tokens.refresh.expires),
+    httpOnly: true,
     secure: true,
     sameSite: 'none',
   });
 
-  const accessTokenMaxAge = new Date(tokens.access.expires).getTime() - Date.now();
   res.cookie('accessToken', tokens.access.token, {
-    maxAge: accessTokenMaxAge, // Set maxAge in milliseconds
+    expires: new Date(tokens.access.expires),
     httpOnly: true,
     secure: true,
     sameSite: 'none',
