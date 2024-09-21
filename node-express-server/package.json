@@ -9,10 +9,11 @@
   "license": "MIT",
   "licenseUrl": "https://github.com/alaminXpro/node-express-server/blob/main/LICENSE",
   "engines": {
-    "node": "20.x"
+    "node": ">=20.x"
   },
   "scripts": {
-    "start": "pm2 start ecosystem.config.json --no-daemon",
+    "start": "node src/index.js",
+    "prod": "pm2 start ecosystem.config.json --no-daemon",
     "dev": "cross-env NODE_ENV=development nodemon src/index.js",
     "test": "jest -i --colors --verbose --detectOpenHandles",
     "test:watch": "jest -i --watchAll",
