@@ -20,6 +20,7 @@ const register = catchAsync(async (req, res) => {
     secure: true,
     sameSite: 'none',
   });
+  res.status(httpStatus.CREATED).send({ user, tokens });
 });
 
 const login = catchAsync(async (req, res) => {
