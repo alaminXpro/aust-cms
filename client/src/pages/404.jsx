@@ -1,40 +1,28 @@
-import Layout from "../components/layout/Layout"
 import { Link } from 'react-router-dom';
-export default function NotFoundPage() {
+import { useDispatch } from 'react-redux';
+import { setPageTitle } from '../redux/themeConfigSlice';
+import { useEffect } from 'react';
+
+const Error404 = (props) => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(setPageTitle('404 Not Found'));
+    }, [dispatch]);
 
     return (
-        <>
-            <Layout headerStyle={1} footerStyle={2} headerCls="navbar-dark inner-page-header">
-                <div>
-                    {/* PAGE 404
-			============================================= */}
-                    <section id="page-404" className="bg--white-300 division">
-                        <div className="container">
-                            <div className="row justify-content-center">
-                                {/* 404 PAGE TEXT */}
-                                <div className="col-md-9 col-lg-8">
-                                    <div className="page-404-txt text-center">
-                                        {/* Image */}
-                                        <div className="rel page-404-img">
-                                            <img className="img-fluid" src="/images/error-404.png" alt="error-404-img" />
-                                        </div>
-                                        {/* Text */}
-                                        <h2 className="s-56 w-700 color--dark">Page Not Found</h2>
-                                        <h6 className="s-22 color--grey">
-                                            Oops! The page you are looking for might have been moved, renamed or might never existed
-                                        </h6>
-                                        {/* Button */}
-                                        <Link to="/" className="btn btn--theme hover--theme">Back to home</Link>
-                                    </div>
-                                </div>	{/* END 404 PAGE TEXT */}
-                            </div>	   {/* End row */}
-                        </div>	   {/* End container */}
-                    </section>	{/* END PAGE 404 */}
-                    {/* DIVIDER LINE */}
-                    <hr className="divider divider-light" />
+        <div className="pt-[82px] lg:pt-[106px]">
+            <div className="flex min-h-[500px] items-center justify-center">
+                <div className="p-5 text-center font-semibold">
+                    <h2 className="mb-8 text-[50px] font-bold leading-none md:text-[80px]">404</h2>
+                    <h4 className="mb-5 text-xl font-semibold text-primary sm:text-5xl">Ooops!</h4>
+                    <p className="text-base">The page you requested was not found!</p>
+                    <Link to="/" className="btn mx-auto mt-10 w-max">
+                        Back To Home
+                    </Link>
                 </div>
+            </div>
+        </div>
+    );
+};
 
-            </Layout>
-        </>
-    )
-}
+export default Error404;

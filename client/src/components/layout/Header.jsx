@@ -13,7 +13,6 @@ import IconSearch from '../Icon/IconSearch';
 import IconXCircle from '../Icon/IconXCircle';
 import IconSun from '../Icon/IconSun';
 import IconMoon from '../Icon/IconMoon';
-import IconLaptop from '../Icon/IconLaptop';
 import IconMailDot from '../Icon/IconMailDot';
 import IconArrowLeft from '../Icon/IconArrowLeft';
 import IconInfoCircle from '../Icon/IconInfoCircle';
@@ -107,19 +106,19 @@ const Header = () => {
     const [notifications, setNotifications] = useState([
         {
             id: 1,
-            profile: 'user-profile.jpeg',
+            profile: 'profile.jpg',
             message: '<strong className="text-sm mr-1">John Doe</strong>invite you to <strong>Prototyping</strong>',
             time: '45 min ago',
         },
         {
             id: 2,
-            profile: 'profile-34.jpeg',
+            profile: 'profile.jpg',
             message: '<strong className="text-sm mr-1">Adam Nolan</strong>mentioned you to <strong>UX Basics</strong>',
             time: '9h Ago',
         },
         {
             id: 3,
-            profile: 'profile-16.jpeg',
+            profile: 'profile.jpg',
             message: '<strong className="text-sm mr-1">Anna Morgan</strong>Upload a file',
             time: '9h Ago',
         },
@@ -147,21 +146,18 @@ const Header = () => {
     const API_BASE = import.meta.env.VITE_API_BASE;
 
     const handleSignOut = async () => {
+        console.log('signout');
         try {
-          dispatch(signOutUserStart());
-          const res = await axios.post(`${API_BASE}/api/auth/signout`, {}, { withCredentials: true });
-          if (res.data.success === false) {
-            dispatch(signOutUserFailure(res.data.message));
-            return;
-          }
-          dispatch(signOutUserSuccess(res.data));
-          console.log(res.data);
-            navigate('/login');
+            dispatch(signOutUserStart());
+            const res = await axios.post(`${API_BASE}/auth/logout`, null, { withCredentials: true });
+            dispatch(signOutUserSuccess());
         } catch (error) {
-          dispatch(signOutUserFailure(error.message));
+            if(error.response.status === 404){
+                dispatch(signOutUserSuccess());
+            }
+            dispatch(signOutUserFailure(error.message));
         }
-      };
-
+    };
     return (
         <header className={`z-40 ${themeConfig.semidark && themeConfig.menu === 'horizontal' ? 'dark' : ''}`}>
             <div className="shadow-sm">
@@ -232,10 +228,7 @@ const Header = () => {
                         <div>
                             {themeConfig.theme === 'light' ? (
                                 <button
-                                    className={`${
-                                        themeConfig.theme === 'light' &&
-                                        'flex items-center p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-primary hover:bg-white-light/90 dark:hover:bg-dark/60'
-                                    }`}
+                                    className="flex items-center p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-primary hover:bg-white-light/90 dark:hover:bg-dark/60"
                                     onClick={() => {
                                         dispatch(toggleTheme('dark'));
                                     }}
@@ -243,32 +236,13 @@ const Header = () => {
                                     <IconSun />
                                 </button>
                             ) : (
-                                ''
-                            )}
-                            {themeConfig.theme === 'dark' && (
                                 <button
-                                    className={`${
-                                        themeConfig.theme === 'dark' &&
-                                        'flex items-center p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-primary hover:bg-white-light/90 dark:hover:bg-dark/60'
-                                    }`}
-                                    onClick={() => {
-                                        dispatch(toggleTheme('system'));
-                                    }}
-                                >
-                                    <IconMoon />
-                                </button>
-                            )}
-                            {themeConfig.theme === 'system' && (
-                                <button
-                                    className={`${
-                                        themeConfig.theme === 'system' &&
-                                        'flex items-center p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-primary hover:bg-white-light/90 dark:hover:bg-dark/60'
-                                    }`}
+                                    className="flex items-center p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-primary hover:bg-white-light/90 dark:hover:bg-dark/60"
                                     onClick={() => {
                                         dispatch(toggleTheme('light'));
                                     }}
                                 >
-                                    <IconLaptop />
+                                    <IconMoon />
                                 </button>
                             )}
                         </div>
@@ -451,8 +425,7 @@ const Header = () => {
                                             <img className="rounded-md w-10 h-10 object-cover" src={currentUser?.avatar} alt="userProfile" />
                                             <div className="ltr:pl-4 rtl:pr-4 truncate">
                                                 <h4 className="text-base">
-                                                    {currentUser?.username}
-                                                    <span className="text-xs bg-success-light rounded text-success px-1 ltr:ml-2 rtl:ml-2">Pro</span>
+                                                    {currentUser?.name}
                                                 </h4>
                                                 <button type="button" className="text-black/60 hover:text-primary dark:text-dark-light/60 dark:hover:text-white">
                                                     {currentUser?.email}
@@ -461,7 +434,7 @@ const Header = () => {
                                         </div>
                                     </li>
                                     <li>
-                                        <Link to="/users/profile" className="dark:hover:text-white">
+                                        <Link to={`/profile/${currentUser?.studentId}`} className="dark:hover:text-white">
                                             <IconUser className="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 shrink-0" />
                                             Profile
                                         </Link>
@@ -1001,7 +974,7 @@ const Header = () => {
                                 <NavLink to="/widgets">{t('widgets')}</NavLink>
                             </li>
                             <li>
-                                <NavLink to="https://vristo.sbthemes.com" target="_blank">
+                                <NavLink to="" target="_blank">
                                     {t('documentation')}
                                 </NavLink>
                             </li>

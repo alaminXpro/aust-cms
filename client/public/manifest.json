@@ -1,25 +1,28 @@
 {
-  "short_name": "AUSTCMS",
-  "name": "AUST CLUB MANAGEMENT SYSTEM",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "favicon.ico",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "favicon.ico",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+    "short_name": "AUST CMS",
+    "name": "AUST CLUB MANAGEMENT SYSTEM",
+    "icons": [
+        {
+            "src": "favicon.ico",
+            "sizes": "64x64 32x32 24x24 16x16",
+            "type": "image/x-icon"
+        },
+        {
+            "src": "logo.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "logo.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#ffffff",
+    "description": "Efficiently manage and participate in AUST club activities",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false
 }

@@ -13,16 +13,19 @@ export default {
   theme: {
     container: {
       center: true,
+      padding: '1rem',
     },
     extend: {
       colors: {
+        transparent: 'transparent',
+        current: 'currentColor',
         primary: {
-          DEFAULT: "#4361ee",
+          DEFAULT: "#47BDFF",
           light: "#eaf1ff",
           "dark-light": "rgba(67,97,238,.15)",
         },
         secondary: {
-          DEFAULT: "#805dca",
+          DEFAULT: "#B476E5",
           light: "#ebe4f7",
           "dark-light": "rgb(128 93 202 / 15%)",
         },
@@ -52,7 +55,7 @@ export default {
           "dark-light": "rgba(59,63,92,.15)",
         },
         black: {
-          DEFAULT: "#0e1726",
+          DEFAULT: "#08111F",
           light: "#e3e4eb",
           "dark-light": "rgba(14,23,38,.15)",
         },
@@ -61,9 +64,22 @@ export default {
           light: "#e0e6ed",
           dark: "#888ea8",
         },
+        gray: {
+          DEFAULT: '#7780A1',
+          dark: '#1C2331',
+          light: '#F5F7FF',
+        },
       },
+      screens: {
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1142px',
+    },
       fontFamily: {
         nunito: ["Nunito", "sans-serif"],
+        mulish: ['Mulish', 'sans-serif'],
+        reey: ['reey', 'sans-serif'],
       },
       spacing: {
         4.5: "18px",
@@ -72,11 +88,16 @@ export default {
         "3xl":
           "0 2px 2px rgb(224 230 237 / 46%), 1px 6px 7px rgb(224 230 237 / 46%)",
       },
+      animation: {
+        'spin-slow': 'spin 5s linear infinite',
+    },
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {
             "--tw-prose-invert-headings": theme("colors.white.dark"),
             "--tw-prose-invert-links": theme("colors.white.dark"),
+            color: theme('colors.gray'),
+            fontSize: '1.125rem',
             h1: { fontSize: "40px", marginBottom: "0.5rem", marginTop: 0 },
             h2: { fontSize: "32px", marginBottom: "0.5rem", marginTop: 0 },
             h3: { fontSize: "28px", marginBottom: "0.5rem", marginTop: 0 },
