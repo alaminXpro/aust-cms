@@ -148,16 +148,13 @@ const Header = () => {
     const handleSignOut = async () => {
         console.log('signout');
         try {
-            dispatch(signOutUserStart());
-            const res = await axios.post(`${API_BASE}/auth/logout`, null, { withCredentials: true });
-            dispatch(signOutUserSuccess());
+          dispatch(signOutUserSuccess());
         } catch (error) {
-            if(error.response.status === 404){
-                dispatch(signOutUserSuccess());
-            }
-            dispatch(signOutUserFailure(error.message));
+          console.error(error);
+        } finally {
+          axios.post(`${API_BASE}/auth/logout`, null, { withCredentials: true });
         }
-    };
+      };
     return (
         <header className={`z-40 ${themeConfig.semidark && themeConfig.menu === 'horizontal' ? 'dark' : ''}`}>
             <div className="shadow-sm">

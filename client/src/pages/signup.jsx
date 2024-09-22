@@ -83,12 +83,13 @@ const LoginCover = () => {
           httpOnly: true,
         }
       );
-      await axios.post(`${API_BASE}/auth/send-verification-email`, {
-      }, { withCredentials: true });
       dispatch(signUpSuccess(res.data));
       navigate("/");
     } catch (error) {
         dispatch(signUpFailure(error.response.data.message));
+    } finally {
+        axios.post(`${API_BASE}/auth/send-verification-email`, {
+        }, { withCredentials: true });
     }
   };
 

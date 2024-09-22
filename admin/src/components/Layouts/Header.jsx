@@ -150,14 +150,11 @@ const Header = () => {
   const handleSignOut = async () => {
     console.log('signout');
     try {
-      dispatch(signOutUserStart());
-      const res = await axios.post(`${API_BASE}/auth/logout`, null, { withCredentials: true });
       dispatch(signOutUserSuccess());
     } catch (error) {
-      if (error.response.status === 404) {
-        dispatch(signOutUserSuccess());
-      }
-      dispatch(signOutUserFailure(error.message));
+      console.error(error);
+    } finally {
+      axios.post(`${API_BASE}/auth/logout`, null, { withCredentials: true });
     }
   };
 
