@@ -19,6 +19,10 @@ const userSlice = createSlice({
         "accessToken",
         action.payload.tokens.access.token
       );
+      localStorage.setItem(
+        "refreshToken",
+        action.payload.tokens.refresh.token
+      );
       state.loading = false;
       state.error = null;
     },
@@ -34,6 +38,10 @@ const userSlice = createSlice({
       localStorage.setItem(
         "accessToken",
         action.payload.tokens.access.token
+      );
+      localStorage.setItem(
+        "refreshToken",
+        action.payload.tokens.refresh.token
       );
       state.loading = false;
       state.error = null;
@@ -62,6 +70,7 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = null;
       localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
     },
     signOutUserFailure: (state, action) => {
       state.error = action.payload;

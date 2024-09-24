@@ -1,6 +1,7 @@
 const sslcommerzService = require('../services/sslcommerz.service');
 const { getUserById } = require('../services/user.service');
 const { getClubById, addUserToPendingList } = require('../services/club.service');
+const { sendEmail } = require('../services/email.service');
 const catchAsync = require('../utils/catchAsync');
 const httpStatus = require('http-status');
 const config = require('../config/config');
@@ -33,7 +34,25 @@ const paymentSuccess = catchAsync(async (req, res) => {
   await transaction.save();
   await addUserToPendingList(transaction.clubId, transaction.userId);
   console.log('Payment successful: ', transaction);
+
   res.redirect(`${config.clientURL}/payment-success/${req.body.tran_id}`);
+
+  const club = await getClubById(transaction.clubId);
+
+  const subject = 'Payment Successful';
+  const text = `Dear ${transaction.userName},
+
+Your payment for the club ${club.name} has been successfully processed.
+
+Transaction ID: ${transaction.tranId}
+
+Please note that your membership is pending approval for admin review. You will be notified once your membership is approved.
+
+Thank you for your payment.
+
+Best regards,
+The AUSTCMS Team`;
+  await sendEmail(transaction.userEmail, subject, text);
 });
 
 const paymentFail = catchAsync(async (req, res) => {

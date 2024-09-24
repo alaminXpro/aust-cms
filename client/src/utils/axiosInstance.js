@@ -29,15 +29,22 @@ axiosInstance.interceptors.response.use(
 
       try {
         // Attempt to refresh the token
-        const response = await axios.post(`${API_BASE}/auth/refresh-tokens`, {}, { withCredentials: true });
+        const refreshToken = localStorage.getItem('refreshToken');
+        const response = await axios.post(`${API_BASE}/auth/refresh-tokens`, {}, {
+            headers: {
+              Authorization: `Bearer ${refreshToken}`
+            },
+            withCredentials: true
+          });
 
         if (response.status === 200) {
           const newAccessToken = response.data.access.token;
           //Remove the old access token
           localStorage.removeItem('accessToken');
+          localStorage.removeItem('refreshToken');
           // Update localStorage with new access token
           localStorage.setItem('accessToken', newAccessToken);
-
+          localStorage.setItem('refreshToken', response.data.refresh.token);
           // Update headers for the original request with the new token
           originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
 
