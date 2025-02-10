@@ -72,9 +72,9 @@ const LoginCover = () => {
         throw new Error(res.data.errorMessage);
       }
       
-      if(res.data.user.role === 'user'){
-        throw new Error('You are not authorized to access this page');
-      }
+      // if(res.data.user.role === 'user'){
+      //   throw new Error('You are not authorized to access this page');
+      // }
       Cookies.set('accessToken', res.data.tokens.access.token,
         {
           expires: new Date(res.data.tokens.access.expires),
